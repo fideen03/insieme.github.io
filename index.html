@@ -59,6 +59,8 @@
                 <p>Dengan latar belakang pendidikan pondok, kami membawa nilai-nilai kesederhanaan, ketekunan, dan kebersamaan dalam setiap langkah kami.</p>
             </div>
         </section>
+        <!-- Anda bisa menambahkan section lain di sini untuk konten tambahan,
+             misalnya foto terbaru, berita, atau cuplikan karya. -->
     </main>
 
     <!-- Footer Website: Hak cipta dan informasi dasar lainnya -->
@@ -73,23 +75,31 @@
         const loadingScreen = document.getElementById('loading-screen');
         const body = document.body;
 
+        // Event listener yang akan dijalankan setelah seluruh DOM (HTML) dimuat.
+        // Ini memastikan elemen-elemen ada sebelum JavaScript mencoba memanipulasinya.
         document.addEventListener('DOMContentLoaded', () => {
+            // Simulasi waktu loading. Dalam aplikasi nyata, Anda bisa menunggu gambar besar atau
+            // aset penting lainnya selesai dimuat sebelum menyembunyikan loading screen.
             setTimeout(() => {
-                loadingScreen.classList.add('fade-out');
-                body.classList.add('loaded');
+                loadingScreen.classList.add('fade-out'); // Menambahkan kelas untuk memulai animasi fade-out
+                body.classList.add('loaded'); // Menambahkan kelas 'loaded' ke body untuk memulai animasi konten utama
+                
+                // Menunggu animasi fade-out selesai sebelum menyembunyikan elemen loading screen sepenuhnya.
+                // Ini mencegah elemen loading screen mengganggu interaksi setelah tidak terlihat.
                 loadingScreen.addEventListener('transitionend', () => {
-                    loadingScreen.style.display = 'none';
-                }, { once: true });
-            }, 1500);
+                    loadingScreen.style.display = 'none'; // Sembunyikan elemen setelah transisi selesai
+                }, { once: true }); // Listener hanya akan berjalan sekali
+            }, 1500); // Durasi loading screen 1.5 detik. Anda bisa menyesuaikannya.
 
             // ====================================
             // JavaScript untuk Hamburger Menu
             // ====================================
             const hamburgerButton = document.querySelector('.hamburger-menu');
             const navLinks = document.querySelector('.nav-links');
+            const mainNav = document.querySelector('.main-nav'); // Ambil elemen main-nav
 
             hamburgerButton.addEventListener('click', () => {
-                navLinks.classList.toggle('active'); // Toggle class 'active' untuk menampilkan/menyembunyikan menu
+                mainNav.classList.toggle('active'); // Toggle class 'active' pada main-nav untuk menampilkan/menyembunyikan menu
                 hamburgerButton.querySelector('i').classList.toggle('fa-bars'); // Ubah ikon dari hamburger
                 hamburgerButton.querySelector('i').classList.toggle('fa-times'); // ke ikon 'X'
             });
@@ -98,7 +108,12 @@
             // JavaScript untuk Teks Selamat Datang Berubah Warna
             // ====================================
             const welcomeTextSpan = document.getElementById('welcome-text-insieme');
-            const colors = ['#F5F5DC', '#FFC0CB', '#D3D3D3', '#000000']; // Krem, Pink, Abu-abu terang, Hitam (sesuaikan dengan tema)
+            const colors = [
+                'var(--color-white)',      // Putih
+                'var(--color-accent-pink)', // Pink
+                'var(--color-light-gray)',  // Abu-abu terang
+                'var(--color-accent-cream)' // Krem
+            ];
             let colorIndex = 0;
 
             function changeWelcomeTextColor() {
