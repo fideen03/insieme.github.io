@@ -1,0 +1,112 @@
+/* Definisi variabel warna untuk kemudahan perubahan */
+:root {
+    --primary-bg: #000000; /* Hitam */
+    --secondary-bg: #F5F5DC; /* Beige/Krem, untuk header atau elemen terang */
+    --text-color: #FFFFFF; /* Putih, untuk teks di latar belakang gelap */
+    --accent-color: #D3D3D3; /* Abu-abu terang untuk aksen halus */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif; /* Font untuk teks umum */
+    background-color: var(--primary-bg); /* Latar belakang dominan hitam */
+    color: var(--text-color); /* Warna teks dominan putih */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6; /* Ketinggian baris untuk keterbacaan */
+}
+
+header {
+    background-color: var(--secondary-bg); /* Latar belakang header krem */
+    color: var(--primary-bg); /* Warna teks di header hitam */
+    padding: 1rem 0;
+    text-align: center;
+    border-bottom: 1px solid var(--accent-color); /* Garis bawah halus */
+}
+
+header .logo img {
+    max-width: 150px; /* Sesuaikan ukuran logo sesuai kebutuhan */
+    height: auto;
+    display: block; /* Agar gambar bisa di-margin auto */
+    margin: 0 auto 10px auto; /* Pusatkan logo */
+}
+
+nav ul {
+    list-style: none; /* Hilangkan bullet point */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Untuk navigasi horizontal */
+    justify-content: center; /* Pusatkan item navigasi */
+    gap: 20px; /* Jarak antar item navigasi */
+}
+
+nav a {
+    color: var(--primary-bg); /* Warna tautan navigasi hitam */
+    text-decoration: none; /* Hilangkan garis bawah tautan */
+    font-weight: 600;
+    padding: 5px 10px;
+    transition: color 0.3s ease; /* Transisi warna saat hover */
+}
+
+nav a:hover {
+    color: var(--accent-color); /* Efek hover yang halus */
+}
+
+main {
+    max-width: 960px; /* Lebar maksimal konten utama */
+    margin: 2rem auto; /* Pusatkan konten dengan margin atas/bawah */
+    padding: 0 20px; /* Padding samping untuk konten */
+}
+
+section {
+    margin-bottom: 3rem; /* Jarak antar section */
+    padding: 2rem;
+    background-color: rgba(255, 255, 255, 0.05); /* Sedikit transparan putih untuk kedalaman */
+    border-radius: 8px; /* Sudut membulat */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+}
+
+h1, h2, h3 {
+    font-family: 'Merriweather', serif; /* Font untuk judul */
+    color: var(--secondary-bg); /* Warna judul krem */
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+    /* Anda bisa menambahkan background-image di sini, misalnya: */
+    /* background-image: url('../images/hero-bg.jpg'); */
+    background-size: cover;
+    background-position: center;
+    color: var(--text-color);
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: var(--secondary-bg);
+}
+
+.hero p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: var(--secondary-bg); /* Latar belakang footer krem */
+    color: var(--primary-bg); /* Warna teks footer hitam */
+    margin-top: 3rem;
+    font-size: 0.9em;
+}
+
+/* Responsivitas dasar untuk layar kecil */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Ubah navigasi menjadi kolom */
+        gap: 10px;
+    }
+}
