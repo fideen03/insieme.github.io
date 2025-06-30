@@ -1,44 +1,266 @@
+/* Import fonts from Google Fonts */
+/* Using Josefin Sans, Playfair Display, Source Sans Pro, and Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&display=swap');
+
+/* --- General Body & Root Styles --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%; /* Ensure 100% width */
+    font-family: 'Source Sans Pro', sans-serif; /* Default font for general text */
+    color: #fff; /* Default text color */
+    overflow: hidden; /* Prevent scrollbars from appearing */
+    line-height: 1.6; /* Better readability */
+    -webkit-font-smoothing: antialiased; /* Smooth font rendering on WebKit/Chrome */
+    -moz-osx-font-smoothing: grayscale; /* Smooth font rendering on Firefox/macOS */
+    background-color: #000; /* Fallback background color */
+}
+
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Separates header & footer */
+    align-items: center;
+    text-align: center;
+    padding: 20px; /* Global padding for content */
+    box-sizing: border-box; /* Ensure padding doesn't add to size */
+}
+
+/* --- Background Image & Overlay --- */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/background.jpg'); /* Make sure the image path is correct */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5); /* Slightly darker for better text contrast */
+    z-index: -1; /* Move behind content */
+    transform: scale(1.05); /* Slightly zoomed in initially for smooth transition */
+    
+    /* Background animation on load and continuous subtle movement */
+    animation: backgroundFadeIn 2s ease-out forwards, backgroundZoom 20s infinite alternate ease-in-out;
+}
+
+/* Keyframes for background fade-in */
+@keyframes backgroundFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Keyframes for subtle background zoom */
+@keyframes backgroundZoom {
+    0% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1.08); /* Slightly more zoom at the end */
+    }
+}
+
+/* --- Header & Content Styling --- */
+.header-content {
+    z-index: 1; /* Ensure it's above the background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 880px; /* Max width for main content */
+    padding-top: 5vh; /* Distance from top */
+    box-sizing: border-box;
+    
+    /* General fade-in animation for header */
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+.logo img {
+    max-height: 90px; /* Flexible logo size */
+    width: auto;
+    display: block;
+    margin-bottom: 25px; /* Space between logo and tagline */
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Subtle shadow effect on logo */
+}
+
+/* Styles for text logo "INSIEME" (if uncommented in HTML) */
+.text-logo {
+    font-family: 'Playfair Display', serif; /* Using Playfair Display font */
+    font-weight: 700;
+    font-size: 4.5em; /* Larger font size for strong impression */
+    text-transform: uppercase;
+    letter-spacing: 0.2em; /* Slightly wider spacing */
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* Clearer text shadow */
+    
+    /* Color cycling animation for INSIEME text */
+    animation: colorCycle 6s infinite ease-in-out; /* 6s duration, infinite, smooth repeat */
+}
+
+/* Keyframes for INSIEME color change */
+@keyframes colorCycle {
+    0% { color: #FFFFFF; } /* White */
+    33% { color: #A9A9A9; } /* Gray */
+    66% { color: #F5F5DC; } /* Cream */
+    100% { color: #FFFFFF; } /* Back to White */
+}
+
+.tagline p {
+    font-family: 'Montserrat', sans-serif; /* Changed to Montserrat for tagline */
+    font-weight: 400; /* Lighter weight */
+    font-size: 1.3em; /* Appropriate size */
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    text-transform: capitalize; /* Capitalize each word */
+    margin-bottom: 50px; /* More space to navigation */
+    max-width: 600px; /* Limit tagline width */
+    
+    opacity: 0; /* Start hidden */
+    animation: slideUp 1s ease-out 0.8s forwards; /* Slide-up animation with delay */
+}
+
+/* --- Main Navigation --- */
+.main-nav {
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1.5s ease-out 1.5s forwards; /* Fade-in animation with delay */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Responsive wrapping */
+    justify-content: center;
+    gap: 35px; /* Space between nav items */
+}
+
+.main-nav li a {
+    font-family: 'Source Sans Pro', sans-serif; /* Keep Source Sans Pro for nav links */
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 12px 25px; /* Proportional padding */
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Slightly thicker, transparent border */
+    border-radius: 50px; /* Pill-shaped buttons */
+    
+    /* Transitions for smooth hover effects */
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Glassmorphism effect */
+    backdrop-filter: blur(3px); 
+    -webkit-backdrop-filter: blur(3px); /* WebKit compatibility */
+}
+
+.main-nav li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background on hover */
+    color: #fff; /* Keep white */
+    border-color: #fff; /* Solid border on hover */
+    transform: translateY(-5px); /* Lift up on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+
+/* --- Footer Social Icons --- */
+.footer-social {
+    z-index: 1;
+    padding-bottom: 40px; /* Distance from bottom */
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1.5s ease-out 2s forwards; /* Last fade-in animation */
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 2em; /* Larger icon size */
+    margin: 0 20px; /* Space between icons */
+    text-decoration: none;
+    
+    /* Transitions for smooth hover effects */
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #FFD700; /* Gold/yellow highlight on hover */
+    transform: scale(1.25) rotate(5deg); /* Slightly enlarge and rotate */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Glow effect */
+}
+
+/* --- Generic Keyframe Animations --- */
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-up and fade-in animation */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* More initial movement */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* --- Styles for Internal Pages (e.g., kata-kata.html) --- */
 .header-content.header-internal {
-    padding-top: 3vh; /* Kurangi padding atas untuk halaman internal */
-    justify-content: flex-start; /* Logo di kiri atas */
-    align-items: flex-start; /* Konten header rata kiri */
-    flex-direction: row; /* Logo dan judul berdampingan */
+    padding-top: 3vh; /* Reduce top padding for internal pages */
+    justify-content: flex-start; /* Logo to top-left */
+    align-items: flex-start; /* Header content left-aligned */
+    flex-direction: row; /* Logo and title side-by-side */
     width: 100%;
-    max-width: none; /* Biarkan header full width */
-    padding-left: 40px; /* Padding dari sisi kiri */
-    padding-right: 40px; /* Padding dari sisi kanan */
+    max-width: none; /* Let header be full width */
+    padding-left: 40px; /* Left padding */
+    padding-right: 40px; /* Right padding */
 }
 
 .header-content.header-internal .logo {
-    margin-bottom: 0; /* Hapus margin bawah default */
-    margin-right: 20px; /* Jarak antara logo dan judul halaman */
+    margin-bottom: 0; /* Remove default bottom margin */
+    margin-right: 20px; /* Space between logo and page title */
 }
 
 .header-content.header-internal .logo img {
-    max-height: 60px; /* Ukuran logo lebih kecil untuk halaman internal */
+    max-height: 60px; /* Smaller logo size for internal pages */
     margin-bottom: 0;
 }
 
 .page-title {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 2.8em; /* Ukuran judul halaman */
+    font-size: 2.8em; /* Page title size */
     color: #fff;
     letter-spacing: 0.1em;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    margin: 0; /* Hapus margin default h1 */
+    margin: 0; /* Remove default h1 margin */
     text-transform: uppercase;
-    opacity: 0; /* Untuk animasi */
-    animation: fadeIn 1.5s ease-out 0.5s forwards; /* Muncul setelah logo */
+    opacity: 0; /* For animation */
+    animation: fadeIn 1.5s ease-out 0.5s forwards; /* Appear after logo */
 }
 
 /* Bagian Konten Kata-Kata */
 .content-section.words-section {
-    flex-grow: 1; /* Biarkan bagian ini mengambil ruang tersisa */
-    overflow-y: auto; /* Aktifkan scroll jika kontennya panjang */
-    -webkit-overflow-scrolling: touch; /* Scroll halus di iOS */
-    padding: 60px 40px; /* Padding internal */
+    flex-grow: 1; /* Allow this section to take remaining space */
+    overflow-y: auto; /* Enable scrolling if content is long */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 60px 40px; /* Internal padding */
     box-sizing: border-box;
     width: 100%;
     max-width: 1000px; /* Lebar maksimal untuk section kartu */
@@ -77,20 +299,26 @@
     align-items: center;
     margin-bottom: 20px;
     position: relative; /* Untuk penempatan titik warna */
+    /* Menyesuaikan gaya karena tidak ada gambar profil */
+    margin-left: 0; /* Hapus margin kiri jika ada */
+    justify-content: flex-start; /* Sejajarkan info profil ke kiri */
 }
 
-.word-card .profile-pic {
-    width: 50px; /* Ukuran gambar profil */
+/* Gaya profile-pic tidak lagi dibutuhkan di sini jika sudah dihapus dari HTML */
+/* .word-card .profile-pic {
+    width: 50px;
     height: 50px;
-    border-radius: 50%; /* Bentuk bulat */
+    border-radius: 50%;
     margin-right: 15px;
-    object-fit: cover; /* Pastikan gambar mengisi area tanpa distorsi */
-    border: 2px solid #ddd; /* Border halus pada gambar profil */
-}
+    object-fit: cover;
+    border: 2px solid #ddd;
+} */
 
 .word-card .profile-info {
     display: flex;
     flex-direction: column;
+    /* Menyesuaikan margin karena tidak ada gambar profil */
+    margin-left: 0; /* Pastikan tidak ada margin tambahan di sini */
 }
 
 .word-card .social-name {
@@ -197,9 +425,9 @@
     .word-card .quote {
         font-size: 1.3em;
     }
-    .word-card .profile-pic {
-        width: 45px; /* Ukuran gambar profil di mobile */
-        height: 45px;
+    /* Menyesuaikan gaya card-header tanpa gambar profil di media query */
+    .word-card .card-header {
+        align-items: center; /* Tetap di tengah vertikal */
     }
     .word-card .social-name {
         font-size: 1em;
@@ -220,14 +448,14 @@
 
 @media (max-width: 768px) {
     .header-content.header-internal {
-        flex-direction: column; /* Tumpuk logo dan judul */
+        flex-direction: column; /* Stack logo and title */
         align-items: center;
         padding-left: 20px;
         padding-right: 20px;
     }
     .header-content.header-internal .logo {
         margin-right: 0;
-        margin-bottom: 15px; /* Jarak antara logo dan judul */
+        margin-bottom: 15px; /* Space between logo and title */
     }
     .header-content.header-internal .logo img {
         max-height: 50px;
@@ -247,16 +475,13 @@
     .word-card .quote {
         font-size: 1.1em;
     }
-    .word-card .author { /* Author style dihilangkan di HTML, ini tidak dipakai lagi */
-        font-size: 0.9em;
-    }
     .word-card .hashtag {
         font-size: 0.8em;
         padding: 4px 8px;
     }
-    .word-card .profile-pic {
-        width: 40px; /* Ukuran gambar profil di mobile */
-        height: 40px;
+    /* Menyesuaikan gaya card-header tanpa gambar profil di media query */
+    .word-card .card-header {
+        align-items: center; /* Tetap di tengah vertikal */
     }
     .word-card .social-name {
         font-size: 0.95em;
@@ -287,7 +512,7 @@
     }
     .word-card {
         padding: 15px;
-        max-width: 350px; /* Lebih kecil lagi */
+        max-width: 350px; /* Smallest width */
     }
     .word-card .quote {
         font-size: 1em;
@@ -296,10 +521,7 @@
     .word-card .hashtag {
         font-size: 0.75em;
     }
-    .word-card .profile-pic {
-        width: 35px; /* Ukuran gambar profil di mobile */
-        height: 35px;
-    }
+    /* Menyesuaikan gaya card-header tanpa gambar profil di media query */
     .word-card .social-name {
         font-size: 0.9em;
     }
