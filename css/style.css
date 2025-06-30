@@ -21,6 +21,12 @@ body {
     line-height: 1.6; /* Ketinggian baris untuk keterbacaan */
     -webkit-font-smoothing: antialiased; /* Perbaikan rendering font */
     -moz-osx-font-smoothing: grayscale; /* Perbaikan rendering font */
+    opacity: 0; /* Awalnya body tidak terlihat untuk animasi fade-in */
+    transition: opacity 0.5s ease-in; /* Animasi fade-in untuk body */
+}
+
+body.loaded {
+    opacity: 1; /* Setelah dimuat, body akan terlihat */
 }
 
 /* ==================================== */
@@ -33,6 +39,16 @@ header {
     text-align: center;
     border-bottom: 1px solid var(--color-light-gray); /* Garis bawah halus */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Bayangan halus untuk kedalaman */
+    /* Animasi untuk header */
+    transform: translateY(-100%); /* Posisi awal di atas layar */
+    opacity: 0; /* Awalnya tidak terlihat */
+    animation: slideDown 0.8s ease-out forwards; /* Animasi slideDown */
+    animation-delay: 1.0s; /* Delay setelah loading screen hilang */
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
 header .logo img {
@@ -87,6 +103,7 @@ section {
     border-radius: 12px; /* Sudut lebih membulat */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam */
     border: 1px solid rgba(255, 255, 255, 0.1); /* Garis border halus */
+    opacity: 0; /* Awalnya section tidak terlihat untuk animasi */
 }
 
 h1, h2, h3 {
@@ -109,6 +126,14 @@ h1, h2, h3 {
     color: var(--color-white);
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    /* Animasi untuk hero section */
+    animation: fadeInScale 1s ease-out forwards;
+    animation-delay: 1.3s; /* Delay setelah header muncul */
+}
+
+@keyframes fadeInScale {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 .hero h1 {
@@ -127,10 +152,15 @@ h1, h2, h3 {
 /* ==================================== */
 /* Gaya Bagian About Us */
 /* ==================================== */
-.about-us p {
-    text-align: justify; /* Teks rata kanan-kiri */
-    margin-bottom: 1rem;
-    font-size: 1.05em;
+.about-us {
+    /* Animasi untuk about-us section */
+    animation: slideInRight 1s ease-out forwards;
+    animation-delay: 1.6s; /* Delay setelah hero muncul */
+}
+
+@keyframes slideInRight {
+    0% { opacity: 0; transform: translateX(50px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
 /* ==================================== */
@@ -144,6 +174,55 @@ footer {
     margin-top: 4rem; /* Margin atas footer lebih besar */
     font-size: 0.95em;
     border-top: 1px solid var(--color-light-gray);
+    /* Animasi untuk footer */
+    transform: translateY(30px); /* Posisi awal di bawah */
+    opacity: 0; /* Awalnya tidak terlihat */
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 1.9s; /* Delay setelah about-us muncul */
+}
+
+@keyframes fadeInUp {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ==================================== */
+/* Gaya untuk Loading Screen */
+/* ==================================== */
+#loading-screen {
+    position: fixed; /* Memastikan loading screen menutupi seluruh layar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Latar belakang hitam untuk loading screen */
+    display: flex; /* Menggunakan flexbox untuk memusatkan loader */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Pastikan di atas semua konten lain */
+    opacity: 1; /* Awalnya terlihat penuh */
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Animasi fade-out */
+    visibility: visible; /* Awalnya terlihat */
+}
+
+.loader {
+    border: 6px solid rgba(255, 255, 255, 0.3); /* Warna border loader (abu-abu transparan) */
+    border-top: 6px solid #FFF; /* Warna border atas (putih) */
+    border-radius: 50%; /* Membuat bentuk lingkaran */
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Animasi berputar */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Kelas untuk menyembunyikan loading screen */
+#loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden; /* Sembunyikan setelah animasi fade-out selesai */
 }
 
 /* ==================================== */
