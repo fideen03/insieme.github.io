@@ -72,30 +72,9 @@ header {
 
 .header-content {
     display: flex;
-    justify-content: space-between; /* Untuk mobile: logo kiri, hamburger kanan */
+    justify-content: flex-end; /* Navigasi ke kanan */
     align-items: center;
     position: relative; /* Untuk posisi absolut hamburger */
-}
-
-.header-main .logo {
-    position: absolute; /* Posisikan logo relatif terhadap header-content */
-    left: 50%;
-    transform: translateX(-50%); /* Pusatkan logo secara horizontal */
-    z-index: 901; /* Pastikan logo di atas elemen lain */
-}
-
-.header-main .logo img {
-    max-width: 150px; /* Ukuran logo di desktop */
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5)); /* Efek bayangan lebih kuat pada logo */
-    animation: gentleJump 2s infinite ease-in-out; /* Animasi lompat halus */
-}
-
-@keyframes gentleJump {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); } /* Lompat 8px ke atas */
 }
 
 /* ==================================== */
@@ -193,6 +172,11 @@ h1, h2, h3 {
     /* Animasi untuk hero section */
     animation: fadeInScale 1s ease-out forwards;
     animation-delay: 1.3s;
+    display: flex; /* Gunakan flexbox untuk menata logo dan teks */
+    flex-direction: column; /* Tata elemen secara vertikal */
+    align-items: center; /* Pusatkan secara horizontal */
+    justify-content: center; /* Pusatkan secara vertikal */
+    min-height: 80vh; /* Minimum tinggi viewport untuk hero */
 }
 
 @keyframes fadeInScale {
@@ -214,11 +198,32 @@ h1, h2, h3 {
 .hero-inner {
     position: relative;
     z-index: 2; /* Pastikan teks di atas overlay */
+    display: flex; /* Untuk menata logo dan teks dalam inner */
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Jarak antara logo dan teks Selamat Datang */
 }
+
+/* Gaya baru untuk Logo di Hero Section */
+.hero-logo img {
+    max-width: 200px; /* Ukuran logo sedikit lebih besar */
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7)); /* Efek bayangan pada logo lebih lembut */
+    animation: gentleJump 2s infinite ease-in-out; /* Animasi lompat halus */
+    margin-bottom: 20px; /* Jarak antara logo dan tulisan Selamat Datang */
+}
+
+/* Animasi lompat halus (dipindahkan dari header) */
+@keyframes gentleJump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); } /* Lompat sedikit lebih tinggi */
+}
+
 
 .hero-section h1 {
     font-size: 4.5em; /* Ukuran font H1 sangat besar */
-    margin-bottom: 20px;
+    margin-bottom: 0; /* Hapus margin-bottom karena sudah ada gap */
     color: var(--color-white); /* Judul utama putih */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
 }
@@ -343,15 +348,15 @@ h1, h2, h3 {
         padding: 0.8rem 0;
     }
 
-    .header-main .logo img {
-        max-width: 100px; /* Ukuran logo lebih kecil di mobile */
+    /* Di mobile, header-content akan kembali normal (tidak ada logo di sini) */
+    .header-content {
+        justify-content: flex-end; /* Navigasi ke kanan */
     }
 
-    /* Posisikan logo di tengah layar mobile saat hamburger terlihat */
-    .header-main .logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+    /* Logo di hero section untuk mobile */
+    .hero-logo img {
+        max-width: 150px; /* Ukuran logo di mobile */
+        margin-bottom: 15px; /* Jarak di mobile */
     }
 
     .hamburger-menu {
@@ -412,6 +417,7 @@ h1, h2, h3 {
     /* Penyesuaian konten untuk mobile */
     .hero-section {
         padding: 5rem 0;
+        min-height: 60vh; /* Tinggi hero di mobile */
     }
     .hero-section h1 {
         font-size: 3em; /* Ukuran font H1 di mobile */
