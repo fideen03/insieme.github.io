@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Memuat font dari Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk ikon hamburger -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Loading Screen: Muncul saat halaman pertama kali dimuat -->
@@ -22,8 +24,12 @@
                 <!-- Pastikan path gambar logo sudah benar -->
                 <img src="images/log-insieme-bg-er.png" alt="Logo INSIEME">
             </div>
+            <!-- Tombol Hamburger Menu (hanya terlihat di mobile) -->
+            <button class="hamburger-menu" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav class="main-nav">
-                <ul>
+                <ul class="nav-links">
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="photos.html">Foto Bersama</a></li>
                     <li><a href="social.html">Media Sosial</a></li>
@@ -39,7 +45,8 @@
         <!-- Bagian Hero: Sambutan utama dengan judul dan deskripsi singkat -->
         <section class="hero-section">
             <div class="container hero-inner">
-                <h1>Selamat Datang di INSIEME</h1>
+                <!-- Teks "Selamat Datang" yang berubah warna -->
+                <h1>Selamat Datang di <span id="welcome-text-insieme">INSIEME</span></h1>
                 <p>Bersama merajut asa, mengukir karya, dan berbagi cerita.</p>
             </div>
         </section>
@@ -52,8 +59,6 @@
                 <p>Dengan latar belakang pendidikan pondok, kami membawa nilai-nilai kesederhanaan, ketekunan, dan kebersamaan dalam setiap langkah kami.</p>
             </div>
         </section>
-        <!-- Anda bisa menambahkan section lain di sini untuk konten tambahan,
-             misalnya foto terbaru, berita, atau cuplikan karya. -->
     </main>
 
     <!-- Footer Website: Hak cipta dan informasi dasar lainnya -->
@@ -68,21 +73,42 @@
         const loadingScreen = document.getElementById('loading-screen');
         const body = document.body;
 
-        // Event listener yang akan dijalankan setelah seluruh DOM (HTML) dimuat.
-        // Ini memastikan elemen-elemen ada sebelum JavaScript mencoba memanipulasinya.
         document.addEventListener('DOMContentLoaded', () => {
-            // Simulasi waktu loading. Dalam aplikasi nyata, Anda bisa menunggu gambar besar atau
-            // aset penting lainnya selesai dimuat sebelum menyembunyikan loading screen.
             setTimeout(() => {
-                loadingScreen.classList.add('fade-out'); // Menambahkan kelas untuk memulai animasi fade-out
-                body.classList.add('loaded'); // Menambahkan kelas 'loaded' ke body untuk memulai animasi konten utama
-                
-                // Menunggu animasi fade-out selesai sebelum menyembunyikan elemen loading screen sepenuhnya.
-                // Ini mencegah elemen loading screen mengganggu interaksi setelah tidak terlihat.
+                loadingScreen.classList.add('fade-out');
+                body.classList.add('loaded');
                 loadingScreen.addEventListener('transitionend', () => {
-                    loadingScreen.style.display = 'none'; // Sembunyikan elemen setelah transisi selesai
-                }, { once: true }); // Listener hanya akan berjalan sekali
-            }, 1500); // Durasi loading screen 1.5 detik. Anda bisa menyesuaikannya.
+                    loadingScreen.style.display = 'none';
+                }, { once: true });
+            }, 1500);
+
+            // ====================================
+            // JavaScript untuk Hamburger Menu
+            // ====================================
+            const hamburgerButton = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburgerButton.addEventListener('click', () => {
+                navLinks.classList.toggle('active'); // Toggle class 'active' untuk menampilkan/menyembunyikan menu
+                hamburgerButton.querySelector('i').classList.toggle('fa-bars'); // Ubah ikon dari hamburger
+                hamburgerButton.querySelector('i').classList.toggle('fa-times'); // ke ikon 'X'
+            });
+
+            // ====================================
+            // JavaScript untuk Teks Selamat Datang Berubah Warna
+            // ====================================
+            const welcomeTextSpan = document.getElementById('welcome-text-insieme');
+            const colors = ['#F5F5DC', '#FFC0CB', '#D3D3D3', '#000000']; // Krem, Pink, Abu-abu terang, Hitam (sesuaikan dengan tema)
+            let colorIndex = 0;
+
+            function changeWelcomeTextColor() {
+                welcomeTextSpan.style.color = colors[colorIndex];
+                colorIndex = (colorIndex + 1) % colors.length;
+            }
+
+            // Jalankan fungsi setiap 2 detik
+            setInterval(changeWelcomeTextColor, 2000);
+            changeWelcomeTextColor(); // Panggil pertama kali agar langsung berubah
         });
     </script>
 </body>
