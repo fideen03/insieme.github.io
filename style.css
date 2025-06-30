@@ -1,6 +1,6 @@
 /* Import fonts from Google Fonts */
-/* Using Josefin Sans, Playfair Display, and Source Sans Pro */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+/* Using Josefin Sans, Playfair Display, Source Sans Pro, and now Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&display=swap');
 
 /* --- General Body & Root Styles --- */
 html, body {
@@ -115,7 +115,7 @@ html, body {
 }
 
 .tagline p {
-    font-family: 'Source Sans Pro', sans-serif; /* Source Sans Pro for tagline */
+    font-family: 'Montserrat', sans-serif; /* Changed to Montserrat for tagline */
     font-weight: 400; /* Lighter weight */
     font-size: 1.3em; /* Appropriate size */
     line-height: 1.5;
@@ -145,7 +145,7 @@ html, body {
 }
 
 .main-nav li a {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif; /* Keep Source Sans Pro for nav links */
     font-weight: 600;
     color: #fff;
     text-decoration: none;
@@ -220,92 +220,196 @@ html, body {
     }
 }
 
-/* --- Responsive Media Queries --- */
+/* --- Styles for Internal Pages (e.g., kata-kata.html) --- */
+.header-content.header-internal {
+    padding-top: 3vh; /* Reduce top padding for internal pages */
+    justify-content: flex-start; /* Logo to top-left */
+    align-items: flex-start; /* Header content left-aligned */
+    flex-direction: row; /* Logo and title side-by-side */
+    width: 100%;
+    max-width: none; /* Let header be full width */
+    padding-left: 40px; /* Left padding */
+    padding-right: 40px; /* Right padding */
+}
 
-/* For tablets and small laptops */
+.header-content.header-internal .logo {
+    margin-bottom: 0; /* Remove default bottom margin */
+    margin-right: 20px; /* Space between logo and page title */
+}
+
+.header-content.header-internal .logo img {
+    max-height: 60px; /* Smaller logo size for internal pages */
+    margin-bottom: 0;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.8em; /* Page title size */
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    margin: 0; /* Remove default h1 margin */
+    text-transform: uppercase;
+    opacity: 0; /* For animation */
+    animation: fadeIn 1.5s ease-out 0.5s forwards; /* Appear after logo */
+}
+
+/* Section for "Kata-Kata" content */
+.content-section.words-section {
+    flex-grow: 1; /* Allow this section to take remaining space */
+    overflow-y: auto; /* Enable scrolling if content is long */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 60px 40px; /* Internal padding */
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px; /* Limit card width */
+    margin: 0 auto; /* Center the cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Space between word cards */
+}
+
+.word-card {
+    background-color: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 650px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Thin border */
+    cursor: pointer; /* Indicates interactivity (if any) */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Hover animation */
+    
+    opacity: 0; /* For entrance animation */
+    transform: translateY(30px); /* For entrance animation */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Default animation */
+}
+
+.word-card:hover {
+    transform: translateY(-5px) scale(1.01); /* Slightly lift and enlarge */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+}
+
+.word-card .quote {
+    font-family: 'Playfair Display', serif; /* Font for quotes */
+    font-weight: 400;
+    font-size: 1.6em; /* Quote font size */
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+    font-style: italic; /* Quotes are often italic */
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.word-card .author {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 1em; /* Author font size */
+    color: rgba(255, 255, 255, 0.7); /* Slightly subdued color */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0;
+}
+
+/* Keyframes for fadeInSlideUp animation (for word cards) */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- Responsive Media Queries (Adjustments for Kata-Kata Page) --- */
+
 @media (max-width: 992px) {
-    .text-logo {
-        font-size: 3.5em; /* Adjusted font size for smaller screens */
-        letter-spacing: 0.15em;
+    .header-content.header-internal {
+        padding-left: 30px;
+        padding-right: 30px;
     }
-    .tagline p {
-        font-size: 1.1em;
+    .page-title {
+        font-size: 2.2em;
     }
-    .main-nav ul {
+    .content-section.words-section {
+        padding: 50px 30px;
+        gap: 30px;
+    }
+    .word-card .quote {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content.header-internal {
+        flex-direction: column; /* Stack logo and title */
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .header-content.header-internal .logo {
+        margin-right: 0;
+        margin-bottom: 15px; /* Space between logo and title */
+    }
+    .header-content.header-internal .logo img {
+        max-height: 50px;
+    }
+    .page-title {
+        font-size: 1.8em;
+        text-align: center;
+    }
+    .content-section.words-section {
+        padding: 40px 20px;
         gap: 25px;
     }
-    .social-icons a {
-        font-size: 1.8em;
-        margin: 0 15px;
+    .word-card {
+        padding: 25px;
+    }
+    .word-card .quote {
+        font-size: 1.2em;
+    }
+    .word-card .author {
+        font-size: 0.9em;
     }
 }
 
-/* For larger smartphones and small tablets (portrait) */
-@media (max-width: 768px) {
-    .header-content {
-        padding-top: 8vh;
-    }
-    .logo img {
-        max-height: 70px;
-        margin-bottom: 20px;
-    }
-    .text-logo {
-        font-size: 2.8em; /* Even smaller font size */
-        letter-spacing: 0.12em;
-        margin-bottom: 20px;
-    }
-    .tagline p {
-        font-size: 1em;
-        margin-bottom: 40px;
-    }
-    .main-nav ul {
-        flex-direction: column; /* Stack nav buttons vertically */
-        gap: 15px;
-        align-items: center; /* Center when stacked */
-    }
-    .main-nav li a {
-        font-size: 0.95em;
-        padding: 10px 20px;
-        width: 80%; /* Give width to stacked buttons */
-        max-width: 250px; /* Limit max width */
-        box-sizing: border-box; /* Important for width and padding */
-    }
-    .social-icons a {
-        font-size: 1.5em;
-        margin: 0 10px;
-    }
-    .footer-social {
-        padding-bottom: 30px;
-    }
-}
-
-/* For small smartphones */
 @media (max-width: 480px) {
     .main-container {
         padding: 15px;
     }
-    .header-content {
-        padding-top: 5vh;
+    .header-content.header-internal {
+        padding-left: 15px;
+        padding-right: 15px;
     }
-    .logo img {
-        max-height: 60px;
+    .header-content.header-internal .logo img {
+        max-height: 40px;
     }
-    .text-logo {
-        font-size: 2.2em; /* Smallest font size on mobile */
-        letter-spacing: 0.1em;
-    }
-    .tagline p {
-        font-size: 0.9em;
+    .page-title {
+        font-size: 1.5em;
         letter-spacing: 0.08em;
-        margin-bottom: 30px;
     }
-    .main-nav li a {
-        font-size: 0.9em;
-        padding: 8px 15px;
-        width: 90%; /* Wider on smallest screens */
+    .content-section.words-section {
+        padding: 30px 15px;
+        gap: 20px;
     }
-    .social-icons a {
-        font-size: 1.3em;
-        margin: 0 8px;
+    .word-card {
+        padding: 20px;
+    }
+    .word-card .quote {
+        font-size: 1em;
+        line-height: 1.4;
+    }
+    .word-card .author {
+        font-size: 0.8em;
     }
 }
