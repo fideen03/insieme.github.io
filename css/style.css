@@ -1,112 +1,187 @@
-/* Definisi variabel warna untuk kemudahan perubahan */
+/* ==================================== */
+/* Definisi Variabel Warna */
+/* ==================================== */
 :root {
-    --primary-bg: #000000; /* Hitam */
-    --secondary-bg: #F5F5DC; /* Beige/Krem, untuk header atau elemen terang */
-    --text-color: #FFFFFF; /* Putih, untuk teks di latar belakang gelap */
-    --accent-color: #D3D3D3; /* Abu-abu terang untuk aksen halus */
+    --color-black: #000000;
+    --color-white: #FFFFFF;
+    --color-off-white: #F5F5DC; /* Krem / Beige, cocok untuk nuansa kafe */
+    --color-light-gray: #D3D3D3; /* Abu-abu terang untuk aksen dan hover */
+    --color-dark-gray: #333333; /* Abu-abu gelap untuk bayangan atau elemen halus */
 }
 
+/* ==================================== */
+/* Gaya Dasar Body dan Global */
+/* ==================================== */
 body {
     font-family: 'Open Sans', sans-serif; /* Font untuk teks umum */
-    background-color: var(--primary-bg); /* Latar belakang dominan hitam */
-    color: var(--text-color); /* Warna teks dominan putih */
+    background-color: var(--color-black); /* Latar belakang dominan hitam */
+    color: var(--color-white); /* Warna teks dominan putih */
     margin: 0;
     padding: 0;
     line-height: 1.6; /* Ketinggian baris untuk keterbacaan */
+    -webkit-font-smoothing: antialiased; /* Perbaikan rendering font */
+    -moz-osx-font-smoothing: grayscale; /* Perbaikan rendering font */
 }
 
+/* ==================================== */
+/* Gaya Header */
+/* ==================================== */
 header {
-    background-color: var(--secondary-bg); /* Latar belakang header krem */
-    color: var(--primary-bg); /* Warna teks di header hitam */
-    padding: 1rem 0;
+    background-color: var(--color-off-white); /* Latar belakang header krem */
+    color: var(--color-black); /* Warna teks di header hitam */
+    padding: 1.5rem 0; /* Padding atas dan bawah lebih besar */
     text-align: center;
-    border-bottom: 1px solid var(--accent-color); /* Garis bawah halus */
+    border-bottom: 1px solid var(--color-light-gray); /* Garis bawah halus */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Bayangan halus untuk kedalaman */
 }
 
 header .logo img {
-    max-width: 150px; /* Sesuaikan ukuran logo sesuai kebutuhan */
+    max-width: 180px; /* Logo sedikit lebih besar */
     height: auto;
-    display: block; /* Agar gambar bisa di-margin auto */
-    margin: 0 auto 10px auto; /* Pusatkan logo */
+    display: block;
+    margin: 0 auto 15px auto; /* Margin bawah lebih besar */
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)); /* Efek bayangan pada logo */
 }
 
+/* ==================================== */
+/* Gaya Navigasi */
+/* ==================================== */
 nav ul {
-    list-style: none; /* Hilangkan bullet point */
+    list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* Untuk navigasi horizontal */
-    justify-content: center; /* Pusatkan item navigasi */
-    gap: 20px; /* Jarak antar item navigasi */
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Jarak antar item navigasi lebih besar */
 }
 
 nav a {
-    color: var(--primary-bg); /* Warna tautan navigasi hitam */
-    text-decoration: none; /* Hilangkan garis bawah tautan */
-    font-weight: 600;
-    padding: 5px 10px;
-    transition: color 0.3s ease; /* Transisi warna saat hover */
+    color: var(--color-black);
+    text-decoration: none;
+    font-weight: 700; /* Lebih tebal */
+    padding: 8px 15px; /* Padding tautan lebih besar */
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease; /* Transisi lebih banyak properti */
+    border-radius: 5px; /* Sudut sedikit membulat */
 }
 
 nav a:hover {
-    color: var(--accent-color); /* Efek hover yang halus */
+    color: var(--color-white); /* Teks menjadi putih saat hover */
+    background-color: var(--color-dark-gray); /* Latar belakang abu-abu gelap saat hover */
+    transform: translateY(-2px); /* Efek naik sedikit saat hover */
 }
 
+/* ==================================== */
+/* Gaya Konten Utama (main) */
+/* ==================================== */
 main {
-    max-width: 960px; /* Lebar maksimal konten utama */
-    margin: 2rem auto; /* Pusatkan konten dengan margin atas/bawah */
-    padding: 0 20px; /* Padding samping untuk konten */
+    max-width: 1024px; /* Lebar maksimal konten utama sedikit lebih besar */
+    margin: 3rem auto; /* Margin atas/bawah lebih besar */
+    padding: 0 25px; /* Padding samping untuk konten */
 }
 
+/* Gaya Bagian (section) */
 section {
-    margin-bottom: 3rem; /* Jarak antar section */
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.05); /* Sedikit transparan putih untuk kedalaman */
-    border-radius: 8px; /* Sudut membulat */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+    margin-bottom: 4rem; /* Jarak antar section lebih besar */
+    padding: 3rem; /* Padding section lebih besar */
+    background-color: rgba(255, 255, 255, 0.08); /* Sedikit transparan putih, lebih menonjol */
+    border-radius: 12px; /* Sudut lebih membulat */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Bayangan lebih dalam */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Garis border halus */
 }
 
 h1, h2, h3 {
     font-family: 'Merriweather', serif; /* Font untuk judul */
-    color: var(--secondary-bg); /* Warna judul krem */
+    color: var(--color-off-white); /* Warna judul krem */
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem; /* Margin bawah judul lebih besar */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Bayangan teks untuk judul */
 }
 
+/* ==================================== */
+/* Gaya Bagian Hero */
+/* ==================================== */
 .hero {
     text-align: center;
-    padding: 4rem 0;
-    /* Anda bisa menambahkan background-image di sini, misalnya: */
-    /* background-image: url('../images/hero-bg.jpg'); */
+    padding: 5rem 0; /* Padding atas/bawah lebih besar */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1200x600/333/fff?text=INSIEME+Group+Photo'); /* Placeholder gambar background */
     background-size: cover;
     background-position: center;
-    color: var(--text-color);
+    color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .hero h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-    color: var(--secondary-bg);
+    font-size: 3.8em; /* Ukuran font H1 lebih besar */
+    margin-bottom: 15px;
+    color: var(--color-off-white);
 }
 
 .hero p {
-    font-size: 1.2em;
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 1.3em; /* Ukuran font paragraf hero lebih besar */
+    max-width: 700px;
+    margin: 0.5rem auto 0 auto;
+    font-weight: 300;
 }
 
+/* ==================================== */
+/* Gaya Bagian About Us */
+/* ==================================== */
+.about-us p {
+    text-align: justify; /* Teks rata kanan-kiri */
+    margin-bottom: 1rem;
+    font-size: 1.05em;
+}
+
+/* ==================================== */
+/* Gaya Footer */
+/* ==================================== */
 footer {
     text-align: center;
-    padding: 1.5rem 0;
-    background-color: var(--secondary-bg); /* Latar belakang footer krem */
-    color: var(--primary-bg); /* Warna teks footer hitam */
-    margin-top: 3rem;
-    font-size: 0.9em;
+    padding: 2rem 0; /* Padding footer lebih besar */
+    background-color: var(--color-off-white);
+    color: var(--color-black);
+    margin-top: 4rem; /* Margin atas footer lebih besar */
+    font-size: 0.95em;
+    border-top: 1px solid var(--color-light-gray);
 }
 
-/* Responsivitas dasar untuk layar kecil */
+/* ==================================== */
+/* Responsivitas Dasar */
+/* ==================================== */
 @media (max-width: 768px) {
+    header {
+        padding: 1rem 0;
+    }
+    header .logo img {
+        max-width: 120px;
+    }
     nav ul {
         flex-direction: column; /* Ubah navigasi menjadi kolom */
         gap: 10px;
+    }
+    nav a {
+        padding: 5px 10px;
+    }
+    main {
+        margin: 1.5rem auto;
+        padding: 0 15px;
+    }
+    section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+    }
+    .hero {
+        padding: 3rem 0;
+    }
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+    footer {
+        margin-top: 2rem;
+        padding: 1.5rem 0;
     }
 }
