@@ -1,162 +1,48 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AKANG INSIEME</title>
-    <!-- Memuat file CSS eksternal. Semua gaya, termasuk loading screen dan animasi, ada di sini. -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Memuat font dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Font Awesome untuk ikon hamburger -->
+    <title>Insieme - Angkatan [Tahun Angkatan Anda]</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Loading Screen: Muncul saat halaman pertama kali dimuat -->
-    <div id="loading-screen">
-        <div class="loading-content">
-            <div class="loader"></div>
-            <p class="progress-text"><span id="loading-percentage">0</span>%</p>
-            <div class="progress-bar-container">
-                <div class="progress-bar-fill" id="progress-bar-fill"></div>
-            </div>
-        </div>
-    </div>
+    <div class="main-container">
+        <div class="background-image"></div>
 
-    <!-- Header Website: Berisi navigasi utama (tanpa logo lagi di sini) -->
-    <header class="header-main">
-        <div class="container header-content">
-            <!-- Tombol Hamburger Menu (hanya terlihat di mobile) -->
-            <button class="hamburger-menu" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="main-nav">
-                <!-- Logo di dalam hamburger menu (hanya terlihat saat menu terbuka di mobile) -->
-                <div class="menu-logo">
-                    <img src="images/log-insieme-bg-er.png" alt="Logo INSIEME Menu">
+        <header class="header-content">
+            <div class="logo">
+                <img src="images/insieme-logo.png" alt="Insieme Logo"> 
+                
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="photos.html">Foto Bersama</a></li>
-                    <li><a href="social.html">Media Sosial</a></li>
-                    <li><a href="books.html">Karya</a></li>
-                    <li><a href="profiles.html">Profil Kami</a></li>
+            
+            <div class="tagline">
+                <p><em>Satu Langkah Bersama, Selamanya Terukir.</em></p> </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">PROFIL KAMI</a></li>
+                    <li><a href="#">GALERI</a></li>
+                    <li><a href="#">ACARA</a></li>
+                    <li><a href="#">BERITA</a></li>
+                    <li><a href="#">KONTAK</a></li>
                 </ul>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <!-- Konten Utama Website -->
-    <main class="main-content">
-        <!-- Bagian Hero: Sambutan utama dengan judul, deskripsi singkat, dan sekarang logo -->
-        <section class="hero-section">
-            <div class="container hero-inner">
-                <div class="hero-logo">
-                    <!-- Logo utama di hero section -->
-                    <img src="images/log-insieme-bg-er.png" alt="Logo INSIEME">
+        <footer class="footer-social">
+            <div class="social-icons">
+                <a href="https://instagram.com/akun_instagram_angkatan_anda" target="_blank" aria-label="Instagram Insieme"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:email_angkatan_anda@example.com" target="_blank" aria-label="Email Insieme"><i class="fas fa-envelope"></i></a>
                 </div>
-                <!-- Teks "Selamat Datang" yang berubah warna -->
-                <h1><span id="welcome-text-insieme">SELAMAT DATANG DI INSIEME</span></h1>
-                <p>ORA NGOPI, ORA NYENI KANG!</p>
-            </div>
-        </section>
-
-        <!-- Bagian Tentang Kami: Informasi singkat mengenai angkatan INSIEME -->
-        <section class="about-us-section">
-            <div class="container about-us-inner">
-                <h2>Tentang Kopi Kami</h2>
-                <p>ثم اعلم ايها القلب المكروب أن هذه القهوه قد جعلها اهل الصفاء مجلبة للأسرار مذهبة للأكدار وقد اختلف في حلها اولا وحاصل ما رجحه ابن حجر في شرح العباب بعد ان ذكر أنها حدثت في اول قرن العاشر . ان للوسائل حكم المقاصد ،فمهما طبخت للخير كانت منه وبالعكس فافهم الأصل</p>
-                <p>"Lalu ketahuilah duhai hati yang gelisah bahwa kopi ini telah dijadikan oleh Ahli shofwah (orang orang yang bersih hatinya) sebagai pengundang akan datangnya cahaya dan rahasia Tuhan, penghapus kesusahan. Para ulama berbeda pendapat akan kehalalannya, namun alhasil yang diunggulkan oleh Ibnu Hajar dalam kitab Syarhul Ubab setelah penjelasan bahwa asal usul kopi di awal abad kesepuluh hijriyah memandang dari Qoidah 'bagi perantara menjadi hukum tujuannya' maka selama kopi ini dimasak untuk kebaikan maka mendapat kebaikannya begitu juga sebaliknya, maka fahami asalnya."</p>
-            </div>
-        </section>
-        <!-- Anda bisa menambahkan section lain di sini untuk konten tambahan,
-             misalnya foto terbaru, berita, atau cuplikan karya. -->
-    </main>
-
-    <!-- Footer Website: Hak cipta dan informasi dasar lainnya -->
-    <footer class="footer-main">
-        <div class="container footer-content">
-            <p>&copy; 2025 INSIEME. Hak Cipta Dilindungi.</p>
-        </div>
-    </footer>
-
-    <script>
-        // JavaScript untuk mengontrol Loading Screen
-        const loadingScreen = document.getElementById('loading-screen');
-        const body = document.body;
-        const loadingPercentageText = document.getElementById('loading-percentage');
-        const progressBarFill = document.getElementById('progress-bar-fill');
-
-        // Fungsi untuk memperbarui progress bar
-        function updateProgressBar(percentage) {
-            loadingPercentageText.textContent = percentage;
-            progressBarFill.style.width = percentage + '%';
-        }
-
-        // Simulasikan progress loading
-        let currentProgress = 0;
-        const loadingInterval = setInterval(() => {
-            currentProgress += 10;
-            if (currentProgress <= 100) {
-                updateProgressBar(currentProgress);
-            } else {
-                clearInterval(loadingInterval);
-            }
-        }, 100); // Update setiap 100ms
-
-        // Event listener yang akan dijalankan setelah seluruh DOM (HTML) dimuat.
-        // Ini memastikan elemen-elemen ada sebelum JavaScript mencoba memanipulasinya.
-        document.addEventListener('DOMContentLoaded', () => {
-            // Setelah DOMContentLoaded, mulai transisi loading screen
-            setTimeout(() => {
-                // Pastikan progress bar mencapai 100% sebelum fade-out
-                updateProgressBar(100); 
-                clearInterval(loadingInterval); // Hentikan interval jika masih berjalan
-
-                setTimeout(() => {
-                    loadingScreen.classList.add('fade-out'); // Menambahkan kelas untuk memulai animasi fade-out
-                    body.classList.add('loaded'); // Menambahkan kelas 'loaded' ke body untuk memulai animasi konten utama
-                    
-                    loadingScreen.addEventListener('transitionend', () => {
-                        loadingScreen.style.display = 'none'; // Sembunyikan elemen setelah transisi selesai
-                    }, { once: true });
-                }, 500); // Penundaan singkat setelah progress 100% sebelum fade-out
-            }, 1500); // Total durasi simulasi loading screen
-            
-
-            // ====================================
-            // JavaScript untuk Hamburger Menu
-            // ====================================
-            const hamburgerButton = document.querySelector('.hamburger-menu');
-            const mainNav = document.querySelector('.main-nav'); // Ambil elemen main-nav
-
-            hamburgerButton.addEventListener('click', () => {
-                mainNav.classList.toggle('active'); // Toggle class 'active' pada main-nav untuk menampilkan/menyembunyikan menu
-                hamburgerButton.querySelector('i').classList.toggle('fa-bars'); // Ubah ikon dari hamburger
-                hamburgerButton.querySelector('i').classList.toggle('fa-times'); // ke ikon 'X'
-            });
-
-            // ====================================
-            // JavaScript untuk Teks Selamat Datang Berubah Warna
-            // ====================================
-            const welcomeTextSpan = document.getElementById('welcome-text-insieme');
-            const colors = [
-                'var(--color-white)',      // Putih
-                'var(--color-accent-pink)', // Pink
-                'var(--color-light-gray)',  // Abu-abu terang
-                'var(--color-accent-cream)' // Krem
-            ];
-            let colorIndex = 0;
-
-            function changeWelcomeTextColor() {
-                welcomeTextSpan.style.color = colors[colorIndex];
-                colorIndex = (colorIndex + 1) % colors.length;
-            }
-
-            // Jalankan fungsi setiap 2 detik
-            setInterval(changeWelcomeTextColor, 2000);
-            changeWelcomeTextColor(); // Panggil pertama kali agar langsung berubah
-        });
-    </script>
+        </footer>
+    </div>
 </body>
 </html>
