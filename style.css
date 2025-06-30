@@ -68,7 +68,7 @@ html, body {
     }
 }
 
-/* --- Header & Content Styling --- */
+/* --- Header & Content Styling (Homepage) --- */
 .header-content {
     z-index: 1; /* Ensure it's above the background */
     display: flex;
@@ -92,7 +92,7 @@ html, body {
     filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Subtle shadow effect on logo */
 }
 
-/* Styles for text logo "INSIEME" (if uncommented in HTML) */
+/* Styles for text logo "INSIEME" (if uncommented in HTML - currently not active in index.html) */
 .text-logo {
     font-family: 'Playfair Display', serif; /* Using Playfair Display font */
     font-weight: 700;
@@ -255,7 +255,7 @@ html, body {
     animation: fadeIn 1.5s ease-out 0.5s forwards; /* Appear after logo */
 }
 
-/* Bagian Konten Kata-Kata */
+/* Section for "Kata-Kata" content */
 .content-section.words-section {
     flex-grow: 1; /* Allow this section to take remaining space */
     overflow-y: auto; /* Enable scrolling if content is long */
@@ -263,67 +263,56 @@ html, body {
     padding: 60px 40px; /* Internal padding */
     box-sizing: border-box;
     width: 100%;
-    max-width: 1000px; /* Lebar maksimal untuk section kartu */
-    margin: 0 auto; /* Tengah-kan kartu */
+    max-width: 1000px; /* Max width for card section */
+    margin: 0 auto; /* Center the cards */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px; /* Jarak antar kartu kata-kata */
+    gap: 40px; /* Space between word cards */
 }
 
 .word-card {
-    background-color: rgba(255, 255, 255, 0.9); /* Latar belakang hampir putih */
+    background-color: rgba(255, 255, 255, 0.9); /* Nearly white background */
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 550px; /* Lebar kartu mengikuti gambar */
+    max-width: 550px; /* Card width based on image */
     box-sizing: border-box;
-    text-align: left; /* Teks rata kiri di dalam kartu */
-    color: #333; /* Warna teks gelap di dalam kartu */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi hover */
+    text-align: left; /* Text left-aligned inside card */
+    color: #333; /* Dark text color inside card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover animation */
     
-    opacity: 0; /* Untuk animasi masuk */
-    transform: translateY(30px); /* Untuk animasi masuk */
-    animation: fadeInSlideUp 1s ease-out forwards; /* Animasi default */
+    opacity: 0; /* For entrance animation */
+    transform: translateY(30px); /* For entrance animation */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Default animation */
 }
 
 .word-card:hover {
-    transform: translateY(-5px) scale(1.01); /* Sedikit naik dan membesar */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Bayangan lebih kuat */
+    transform: translateY(-5px) scale(1.01); /* Slightly lift and enlarge */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
 }
 
-/* Header di dalam kartu (Profil) */
+/* Header inside card (Profile part) */
 .word-card .card-header {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    position: relative; /* Untuk penempatan titik warna */
-    /* Menyesuaikan gaya karena tidak ada gambar profil */
-    margin-left: 0; /* Hapus margin kiri jika ada */
-    justify-content: flex-start; /* Sejajarkan info profil ke kiri */
+    position: relative; /* For color dots positioning */
+    justify-content: flex-start; /* Align profile info to the left */
 }
 
-/* Gaya profile-pic tidak lagi dibutuhkan di sini jika sudah dihapus dari HTML */
-/* .word-card .profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-    object-fit: cover;
-    border: 2px solid #ddd;
-} */
+/* Profile picture styles are removed as per request */
 
 .word-card .profile-info {
     display: flex;
     flex-direction: column;
-    /* Menyesuaikan margin karena tidak ada gambar profil */
-    margin-left: 0; /* Pastikan tidak ada margin tambahan di sini */
+    margin-left: 0; /* Ensure no extra margin here */
 }
 
 .word-card .social-name {
     font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 700; /* Tebal untuk nama */
+    font-weight: 700; /* Bold for name */
     font-size: 1.1em;
     color: #333;
     line-height: 1.2;
@@ -337,30 +326,29 @@ html, body {
     line-height: 1.2;
 }
 
-/* Titik Warna di pojok kanan atas kartu */
+/* Color dots in the top right corner of the card */
 .word-card .color-dots {
     position: absolute;
-    top: 5px; /* Sesuaikan posisi vertikal */
-    right: 0px; /* Sesuaikan posisi horizontal */
+    top: 5px; /* Adjust vertical position */
+    right: 0px; /* Adjust horizontal position */
     display: flex;
-    gap: 5px; /* Jarak antar titik */
+    gap: 5px; /* Space between dots */
 }
 
 .word-card .dot {
-    width: 10px; /* Ukuran titik */
+    width: 10px; /* Dot size */
     height: 10px;
-    border-radius: 50%; /* Bentuk bulat */
-    border: 1px solid rgba(0,0,0,0.1); /* Border halus pada titik */
+    border-radius: 50%; /* Round shape */
+    border: 1px solid rgba(0,0,0,0.1); /* Subtle border on dots */
 }
 
-
 .word-card .quote {
-    font-family: 'Montserrat', sans-serif; /* Font untuk kutipan, lebih modern */
-    font-weight: 700; /* Tebal seperti di gambar */
-    font-size: 1.5em; /* Ukuran font kutipan */
+    font-family: 'Montserrat', sans-serif; /* Font for quotes, more modern */
+    font-weight: 700; /* Bold as in the image */
+    font-size: 1.5em; /* Quote font size */
     line-height: 1.4;
-    letter-spacing: 0.02em; /* Sedikit lebih rapat */
-    font-style: normal; /* Kembali ke normal, bukan italic */
+    letter-spacing: 0.02em; /* Slightly tighter spacing */
+    font-style: normal; /* Normal style, not italic */
     color: #333;
     margin-bottom: 20px;
 }
@@ -369,29 +357,28 @@ html, body {
     margin-top: 15px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Jarak antar hashtag */
+    gap: 10px; /* Space between hashtags */
 }
 
 .word-card .hashtag {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
     font-size: 0.85em;
-    color: #2196F3; /* Warna biru untuk hashtag */
-    background-color: rgba(33, 150, 243, 0.1); /* Latar belakang biru transparan */
+    color: #2196F3; /* Blue color for hashtags */
+    background-color: rgba(33, 150, 243, 0.1); /* Transparent blue background */
     padding: 5px 10px;
     border-radius: 5px;
-    text-decoration: none; /* Hapus underline jika ada */
+    text-decoration: none; /* Remove underline if any */
     transition: background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
 }
 
 .word-card .hashtag:hover {
     background-color: rgba(33, 150, 243, 0.2);
-    color: #1976D2; /* Biru lebih gelap saat hover */
+    color: #1976D2; /* Darker blue on hover */
 }
 
-/* Keyframes untuk Animasi fadeInSlideUp (untuk kartu kata-kata) */
-/* Pastikan ini ada di file CSS Anda dan tidak ganda */
+/* Keyframes for fadeInSlideUp animation (for word cards) */
 @keyframes fadeInSlideUp {
     from {
         opacity: 0;
@@ -404,9 +391,24 @@ html, body {
 }
 
 
-/* --- Responsive Media Queries (Adjustments for Kata-Kata Page) --- */
+/* --- Responsive Media Queries --- */
 
+/* For tablets and small laptops */
 @media (max-width: 992px) {
+    .text-logo {
+        font-size: 3.5em; /* Adjusted font size for smaller screens */
+        letter-spacing: 0.15em;
+    }
+    .tagline p {
+        font-size: 1.1em;
+    }
+    .main-nav ul {
+        gap: 25px;
+    }
+    .social-icons a {
+        font-size: 1.8em;
+        margin: 0 15px;
+    }
     .header-content.header-internal {
         padding-left: 30px;
         padding-right: 30px;
@@ -425,10 +427,6 @@ html, body {
     .word-card .quote {
         font-size: 1.3em;
     }
-    /* Menyesuaikan gaya card-header tanpa gambar profil di media query */
-    .word-card .card-header {
-        align-items: center; /* Tetap di tengah vertikal */
-    }
     .word-card .social-name {
         font-size: 1em;
     }
@@ -446,7 +444,44 @@ html, body {
     }
 }
 
+/* For larger smartphones and small tablets (portrait) */
 @media (max-width: 768px) {
+    .header-content { /* General header, not internal */
+        padding-top: 8vh;
+    }
+    .logo img { /* General logo, not internal */
+        max-height: 70px;
+        margin-bottom: 20px;
+    }
+    .text-logo {
+        font-size: 2.8em; /* Even smaller font size */
+        letter-spacing: 0.12em;
+        margin-bottom: 20px;
+    }
+    .tagline p {
+        font-size: 1em;
+        margin-bottom: 40px;
+    }
+    .main-nav ul {
+        flex-direction: column; /* Stack nav buttons vertically */
+        gap: 15px;
+        align-items: center; /* Center when stacked */
+    }
+    .main-nav li a {
+        font-size: 0.95em;
+        padding: 10px 20px;
+        width: 80%; /* Give width to stacked buttons */
+        max-width: 250px; /* Limit max width */
+        box-sizing: border-box; /* Important for width and padding */
+    }
+    .social-icons a {
+        font-size: 1.5em;
+        margin: 0 10px;
+    }
+    .footer-social {
+        padding-bottom: 30px;
+    }
+    /* Internal header adjustments for 768px */
     .header-content.header-internal {
         flex-direction: column; /* Stack logo and title */
         align-items: center;
@@ -479,10 +514,6 @@ html, body {
         font-size: 0.8em;
         padding: 4px 8px;
     }
-    /* Menyesuaikan gaya card-header tanpa gambar profil di media query */
-    .word-card .card-header {
-        align-items: center; /* Tetap di tengah vertikal */
-    }
     .word-card .social-name {
         font-size: 0.95em;
     }
@@ -491,10 +522,36 @@ html, body {
     }
 }
 
+/* For small smartphones */
 @media (max-width: 480px) {
     .main-container {
         padding: 15px;
     }
+    .header-content { /* General header */
+        padding-top: 5vh;
+    }
+    .logo img { /* General logo */
+        max-height: 60px;
+    }
+    .text-logo {
+        font-size: 2.2em; /* Smallest font size on mobile */
+        letter-spacing: 0.1em;
+    }
+    .tagline p {
+        font-size: 0.9em;
+        letter-spacing: 0.08em;
+        margin-bottom: 30px;
+    }
+    .main-nav li a {
+        font-size: 0.9em;
+        padding: 8px 15px;
+        width: 90%; /* Wider on smallest screens */
+    }
+    .social-icons a {
+        font-size: 1.3em;
+        margin: 0 8px;
+    }
+    /* Internal header adjustments for 480px */
     .header-content.header-internal {
         padding-left: 15px;
         padding-right: 15px;
@@ -521,7 +578,6 @@ html, body {
     .word-card .hashtag {
         font-size: 0.75em;
     }
-    /* Menyesuaikan gaya card-header tanpa gambar profil di media query */
     .word-card .social-name {
         font-size: 0.9em;
     }
