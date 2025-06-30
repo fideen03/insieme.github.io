@@ -5,9 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INSIEME - Angkatan Pondok</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Memuat font dari Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* ==================================== */
+        /* Gaya untuk Loading Screen */
+        /* ==================================== */
+        #loading-screen {
+            position: fixed; /* Memastikan loading screen menutupi seluruh layar */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000; /* Latar belakang hitam untuk loading screen */
+            display: flex; /* Menggunakan flexbox untuk memusatkan loader */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Pastikan di atas semua konten lain */
+            opacity: 1; /* Awalnya terlihat penuh */
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out; /* Animasi fade-out */
+            visibility: visible; /* Awalnya terlihat */
+        }
+
+        .loader {
+            border: 6px solid rgba(255, 255, 255, 0.3); /* Warna border loader (abu-abu transparan) */
+            border-top: 6px solid #FFF; /* Warna border atas (putih) */
+            border-radius: 50%; /* Membuat bentuk lingkaran */
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite; /* Animasi berputar */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Kelas untuk menyembunyikan loading screen */
+        #loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden; /* Sembunyikan setelah animasi fade-out selesai */
+        }
+
+        /* ==================================== */
+        /* Gaya untuk Animasi Konten Utama */
+        /* ==================================== */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #000000; /* Latar belakang dominan hitam */
+            color: #FFFFFF; /* Warna teks dominan putih */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            opacity: 0; /* Awalnya body tidak terlihat */
+            transition: opacity 0.5s ease-in; /* Animasi fade-in untuk body */
+        }
+
+        body.loaded {
+            opacity: 1; /* Setelah dimuat, body akan terlihat */
+        }
+
+        header {
+            background-color: #F5F5DC; /* Latar belakang header krem */
+            color: #000000; /* Warna teks di header hitam */
+            padding: 1rem 0;
+            text-align: center;
+            border-bottom: 1px solid #D3D3D3; /* Garis bawah halus */
+            /* Animasi untuk header */
+            transform: translateY(-100%); /* Posisi awal di atas layar */
+            opacity: 0; /* Awalnya tidak terlihat */
+            animation: slideDown 0.8s ease-out forwards; /* Animasi slideDown */
+            animation-delay: 1.0s; /* Delay setelah loading screen hilang */
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        header .logo img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #D3D3D3;
+        }
+
+        main {
+            max-width: 960px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05); /* Sedikit transparan putih untuk kedalaman */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            opacity: 0; /* Awalnya section tidak terlihat */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Merriweather', serif;
+            color: #F5F5DC;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            /* Tambahkan background-image jika diperlukan di sini */
+            background-size: cover;
+            background-position: center;
+            color: #FFFFFF;
+            /* Animasi untuk hero section */
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 1.3s; /* Delay setelah header muncul */
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #F5F5DC;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-us {
+            /* Animasi untuk about-us section */
+            animation: slideInRight 1s ease-out forwards;
+            animation-delay: 1.6s; /* Delay setelah hero muncul */
+        }
+
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background-color: #F5F5DC;
+            color: #000000;
+            margin-top: 3rem;
+            font-size: 0.9em;
+            /* Animasi untuk footer */
+            transform: translateY(30px); /* Posisi awal di bawah */
+            opacity: 0; /* Awalnya tidak terlihat */
+            animation: fadeInUp 0.8s ease-out forwards;
+            animation-delay: 1.9s; /* Delay setelah about-us muncul */
+        }
+
+        @keyframes fadeInUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsivitas dasar untuk layar kecil */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero h1 {
+                font-size: 2.2em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Website -->
     <header>
         <div class="logo">
             <img src="images/log-insieme-bg-er.png" alt="Logo INSIEME">
@@ -23,6 +226,7 @@
         </nav>
     </header>
 
+    <!-- Konten Utama Website -->
     <main>
         <section class="hero">
             <h1>Selamat Datang di INSIEME</h1>
@@ -34,11 +238,32 @@
             <p>INSIEME adalah angkatan pondok yang beranggotakan delapan individu dengan semangat persaudaraan dan kecintaan pada ilmu. Kami percaya bahwa kebersamaan adalah kunci untuk menciptakan karya-karya bermakna dan menjalani kehidupan yang penuh berkah.</p>
             <p>Dengan latar belakang pendidikan pondok, kami membawa nilai-nilai kesederhanaan, ketekunan, dan kebersamaan dalam setiap langkah kami.</p>
         </section>
+    </main>
 
-        </main>
-
+    <!-- Footer Website -->
     <footer>
         <p>&copy; 2025 INSIEME. Hak Cipta Dilindungi.</p>
-        </footer>
+    </footer>
+
+    <script>
+        // JavaScript untuk mengontrol Loading Screen
+        const loadingScreen = document.getElementById('loading-screen');
+        const body = document.body;
+
+        // Event listener yang akan dijalankan setelah seluruh DOM dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            // Kita bisa menambahkan simulasi waktu loading atau menunggu aset dimuat
+            // Untuk demo, kita gunakan setTimeout. Dalam produksi, bisa menunggu gambar/font.
+            setTimeout(() => {
+                loadingScreen.classList.add('fade-out'); // Tambahkan kelas fade-out ke loading screen
+                body.classList.add('loaded'); // Tambahkan kelas loaded ke body untuk memicu animasi fade-in konten
+                
+                // Sembunyikan loading screen sepenuhnya setelah animasinya selesai
+                loadingScreen.addEventListener('transitionend', () => {
+                    loadingScreen.style.display = 'none';
+                }, { once: true }); // Pastikan event listener hanya dijalankan sekali
+            }, 1500); // Durasi loading screen 1.5 detik (Anda bisa menyesuaikannya)
+        });
+    </script>
 </body>
 </html>
