@@ -17,13 +17,9 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Header Website: Berisi logo dan navigasi utama -->
+    <!-- Header Website: Berisi navigasi utama (tanpa logo lagi di sini) -->
     <header class="header-main">
         <div class="container header-content">
-            <div class="logo">
-                <!-- Pastikan path gambar logo sudah benar -->
-                <img src="images/log-insieme-bg-er.png" alt="Logo INSIEME">
-            </div>
             <!-- Tombol Hamburger Menu (hanya terlihat di mobile) -->
             <button class="hamburger-menu" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -42,9 +38,13 @@
 
     <!-- Konten Utama Website -->
     <main class="main-content">
-        <!-- Bagian Hero: Sambutan utama dengan judul dan deskripsi singkat -->
+        <!-- Bagian Hero: Sambutan utama dengan judul, deskripsi singkat, dan sekarang logo -->
         <section class="hero-section">
             <div class="container hero-inner">
+                <div class="hero-logo">
+                    <!-- Logo dipindahkan ke sini -->
+                    <img src="images/log-insieme-bg-er.png" alt="Logo INSIEME">
+                </div>
                 <!-- Teks "Selamat Datang" yang berubah warna -->
                 <h1>Selamat Datang di <span id="welcome-text-insieme">INSIEME</span></h1>
                 <p>Bersama merajut asa, mengukir karya, dan berbagi cerita.</p>
@@ -95,7 +95,6 @@
             // JavaScript untuk Hamburger Menu
             // ====================================
             const hamburgerButton = document.querySelector('.hamburger-menu');
-            const navLinks = document.querySelector('.nav-links');
             const mainNav = document.querySelector('.main-nav'); // Ambil elemen main-nav
 
             hamburgerButton.addEventListener('click', () => {
