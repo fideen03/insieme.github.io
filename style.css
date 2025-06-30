@@ -1,324 +1,169 @@
-/* Import fonts from Google Fonts */
-/* Using Josefin Sans, Playfair Display, Source Sans Pro, and now Montserrat */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&display=swap');
-
-/* --- General Body & Root Styles --- */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%; /* Ensure 100% width */
-    font-family: 'Source Sans Pro', sans-serif; /* Default font for general text */
-    color: #fff; /* Default text color */
-    overflow: hidden; /* Prevent scrollbars from appearing */
-    line-height: 1.6; /* Better readability */
-    -webkit-font-smoothing: antialiased; /* Smooth font rendering on WebKit/Chrome */
-    -moz-osx-font-smoothing: grayscale; /* Smooth font rendering on Firefox/macOS */
-    background-color: #000; /* Fallback background color */
-}
-
-.main-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Separates header & footer */
-    align-items: center;
-    text-align: center;
-    padding: 20px; /* Global padding for content */
-    box-sizing: border-box; /* Ensure padding doesn't add to size */
-}
-
-/* --- Background Image & Overlay --- */
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/background.jpg'); /* Make sure the image path is correct */
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.5); /* Slightly darker for better text contrast */
-    z-index: -1; /* Move behind content */
-    transform: scale(1.05); /* Slightly zoomed in initially for smooth transition */
-    
-    /* Background animation on load and continuous subtle movement */
-    animation: backgroundFadeIn 2s ease-out forwards, backgroundZoom 20s infinite alternate ease-in-out;
-}
-
-/* Keyframes for background fade-in */
-@keyframes backgroundFadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Keyframes for subtle background zoom */
-@keyframes backgroundZoom {
-    0% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1.08); /* Slightly more zoom at the end */
-    }
-}
-
-/* --- Header & Content Styling --- */
-.header-content {
-    z-index: 1; /* Ensure it's above the background */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 880px; /* Max width for main content */
-    padding-top: 5vh; /* Distance from top */
-    box-sizing: border-box;
-    
-    /* General fade-in animation for header */
-    opacity: 0; /* Start hidden */
-    animation: fadeIn 1.5s ease-out forwards;
-}
-
-.logo img {
-    max-height: 90px; /* Flexible logo size */
-    width: auto;
-    display: block;
-    margin-bottom: 25px; /* Space between logo and tagline */
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Subtle shadow effect on logo */
-}
-
-/* Styles for text logo "INSIEME" (if uncommented in HTML) */
-.text-logo {
-    font-family: 'Playfair Display', serif; /* Using Playfair Display font */
-    font-weight: 700;
-    font-size: 4.5em; /* Larger font size for strong impression */
-    text-transform: uppercase;
-    letter-spacing: 0.2em; /* Slightly wider spacing */
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* Clearer text shadow */
-    
-    /* Color cycling animation for INSIEME text */
-    animation: colorCycle 6s infinite ease-in-out; /* 6s duration, infinite, smooth repeat */
-}
-
-/* Keyframes for INSIEME color change */
-@keyframes colorCycle {
-    0% { color: #FFFFFF; } /* White */
-    33% { color: #A9A9A9; } /* Gray */
-    66% { color: #F5F5DC; } /* Cream */
-    100% { color: #FFFFFF; } /* Back to White */
-}
-
-.tagline p {
-    font-family: 'Montserrat', sans-serif; /* Changed to Montserrat for tagline */
-    font-weight: 400; /* Lighter weight */
-    font-size: 1.3em; /* Appropriate size */
-    line-height: 1.5;
-    letter-spacing: 0.1em;
-    text-transform: capitalize; /* Capitalize each word */
-    margin-bottom: 50px; /* More space to navigation */
-    max-width: 600px; /* Limit tagline width */
-    
-    opacity: 0; /* Start hidden */
-    animation: slideUp 1s ease-out 0.8s forwards; /* Slide-up animation with delay */
-}
-
-/* --- Main Navigation --- */
-.main-nav {
-    opacity: 0; /* Start hidden */
-    animation: fadeIn 1.5s ease-out 1.5s forwards; /* Fade-in animation with delay */
-}
-
-.main-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap; /* Responsive wrapping */
-    justify-content: center;
-    gap: 35px; /* Space between nav items */
-}
-
-.main-nav li a {
-    font-family: 'Source Sans Pro', sans-serif; /* Keep Source Sans Pro for nav links */
-    font-weight: 600;
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.05em;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    padding: 12px 25px; /* Proportional padding */
-    border: 2px solid rgba(255, 255, 255, 0.4); /* Slightly thicker, transparent border */
-    border-radius: 50px; /* Pill-shaped buttons */
-    
-    /* Transitions for smooth hover effects */
-    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    
-    /* Glassmorphism effect */
-    backdrop-filter: blur(3px); 
-    -webkit-backdrop-filter: blur(3px); /* WebKit compatibility */
-}
-
-.main-nav li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background on hover */
-    color: #fff; /* Keep white */
-    border-color: #fff; /* Solid border on hover */
-    transform: translateY(-5px); /* Lift up on hover */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow on hover */
-}
-
-/* --- Footer Social Icons --- */
-.footer-social {
-    z-index: 1;
-    padding-bottom: 40px; /* Distance from bottom */
-    opacity: 0; /* Start hidden */
-    animation: fadeIn 1.5s ease-out 2s forwards; /* Last fade-in animation */
-}
-
-.social-icons a {
-    color: #fff;
-    font-size: 2em; /* Larger icon size */
-    margin: 0 20px; /* Space between icons */
-    text-decoration: none;
-    
-    /* Transitions for smooth hover effects */
-    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: #FFD700; /* Gold/yellow highlight on hover */
-    transform: scale(1.25) rotate(5deg); /* Slightly enlarge and rotate */
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Glow effect */
-}
-
-/* --- Generic Keyframe Animations --- */
-
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Slide-up and fade-in animation */
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px); /* More initial movement */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* --- Styles for Internal Pages (e.g., kata-kata.html) --- */
 .header-content.header-internal {
-    padding-top: 3vh; /* Reduce top padding for internal pages */
-    justify-content: flex-start; /* Logo to top-left */
-    align-items: flex-start; /* Header content left-aligned */
-    flex-direction: row; /* Logo and title side-by-side */
+    padding-top: 3vh; /* Kurangi padding atas untuk halaman internal */
+    justify-content: flex-start; /* Logo di kiri atas */
+    align-items: flex-start; /* Konten header rata kiri */
+    flex-direction: row; /* Logo dan judul berdampingan */
     width: 100%;
-    max-width: none; /* Let header be full width */
-    padding-left: 40px; /* Left padding */
-    padding-right: 40px; /* Right padding */
+    max-width: none; /* Biarkan header full width */
+    padding-left: 40px; /* Padding dari sisi kiri */
+    padding-right: 40px; /* Padding dari sisi kanan */
 }
 
 .header-content.header-internal .logo {
-    margin-bottom: 0; /* Remove default bottom margin */
-    margin-right: 20px; /* Space between logo and page title */
+    margin-bottom: 0; /* Hapus margin bawah default */
+    margin-right: 20px; /* Jarak antara logo dan judul halaman */
 }
 
 .header-content.header-internal .logo img {
-    max-height: 60px; /* Smaller logo size for internal pages */
+    max-height: 60px; /* Ukuran logo lebih kecil untuk halaman internal */
     margin-bottom: 0;
 }
 
 .page-title {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 2.8em; /* Page title size */
+    font-size: 2.8em; /* Ukuran judul halaman */
     color: #fff;
     letter-spacing: 0.1em;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-    margin: 0; /* Remove default h1 margin */
+    margin: 0; /* Hapus margin default h1 */
     text-transform: uppercase;
-    opacity: 0; /* For animation */
-    animation: fadeIn 1.5s ease-out 0.5s forwards; /* Appear after logo */
+    opacity: 0; /* Untuk animasi */
+    animation: fadeIn 1.5s ease-out 0.5s forwards; /* Muncul setelah logo */
 }
 
-/* Section for "Kata-Kata" content */
+/* Bagian Konten Kata-Kata */
 .content-section.words-section {
-    flex-grow: 1; /* Allow this section to take remaining space */
-    overflow-y: auto; /* Enable scrolling if content is long */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    padding: 60px 40px; /* Internal padding */
+    flex-grow: 1; /* Biarkan bagian ini mengambil ruang tersisa */
+    overflow-y: auto; /* Aktifkan scroll jika kontennya panjang */
+    -webkit-overflow-scrolling: touch; /* Scroll halus di iOS */
+    padding: 60px 40px; /* Padding internal */
     box-sizing: border-box;
     width: 100%;
-    max-width: 900px; /* Limit card width */
-    margin: 0 auto; /* Center the cards */
+    max-width: 1000px; /* Lebar maksimal untuk section kartu */
+    margin: 0 auto; /* Tengah-kan kartu */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px; /* Space between word cards */
+    gap: 40px; /* Jarak antar kartu kata-kata */
 }
 
 .word-card {
-    background-color: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.9); /* Latar belakang hampir putih */
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 650px;
+    max-width: 550px; /* Lebar kartu mengikuti gambar */
     box-sizing: border-box;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.15); /* Thin border */
-    cursor: pointer; /* Indicates interactivity (if any) */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Hover animation */
+    text-align: left; /* Teks rata kiri di dalam kartu */
+    color: #333; /* Warna teks gelap di dalam kartu */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi hover */
     
-    opacity: 0; /* For entrance animation */
-    transform: translateY(30px); /* For entrance animation */
-    animation: fadeInSlideUp 1s ease-out forwards; /* Default animation */
+    opacity: 0; /* Untuk animasi masuk */
+    transform: translateY(30px); /* Untuk animasi masuk */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animasi default */
 }
 
 .word-card:hover {
-    transform: translateY(-5px) scale(1.01); /* Slightly lift and enlarge */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
-    background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+    transform: translateY(-5px) scale(1.01); /* Sedikit naik dan membesar */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Bayangan lebih kuat */
 }
+
+/* Header di dalam kartu (Profil) */
+.word-card .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative; /* Untuk penempatan titik warna */
+}
+
+.word-card .profile-pic {
+    width: 50px; /* Ukuran gambar profil */
+    height: 50px;
+    border-radius: 50%; /* Bentuk bulat */
+    margin-right: 15px;
+    object-fit: cover; /* Pastikan gambar mengisi area tanpa distorsi */
+    border: 2px solid #ddd; /* Border halus pada gambar profil */
+}
+
+.word-card .profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.word-card .social-name {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700; /* Tebal untuk nama */
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.2;
+}
+
+.word-card .social-handle {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.2;
+}
+
+/* Titik Warna di pojok kanan atas kartu */
+.word-card .color-dots {
+    position: absolute;
+    top: 5px; /* Sesuaikan posisi vertikal */
+    right: 0px; /* Sesuaikan posisi horizontal */
+    display: flex;
+    gap: 5px; /* Jarak antar titik */
+}
+
+.word-card .dot {
+    width: 10px; /* Ukuran titik */
+    height: 10px;
+    border-radius: 50%; /* Bentuk bulat */
+    border: 1px solid rgba(0,0,0,0.1); /* Border halus pada titik */
+}
+
 
 .word-card .quote {
-    font-family: 'Playfair Display', serif; /* Font for quotes */
-    font-weight: 400;
-    font-size: 1.6em; /* Quote font size */
-    line-height: 1.5;
-    letter-spacing: 0.05em;
-    font-style: italic; /* Quotes are often italic */
-    color: #fff;
-    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif; /* Font untuk kutipan, lebih modern */
+    font-weight: 700; /* Tebal seperti di gambar */
+    font-size: 1.5em; /* Ukuran font kutipan */
+    line-height: 1.4;
+    letter-spacing: 0.02em; /* Sedikit lebih rapat */
+    font-style: normal; /* Kembali ke normal, bukan italic */
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.word-card .author {
+.word-card .hashtags {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Jarak antar hashtag */
+}
+
+.word-card .hashtag {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
-    font-size: 1em; /* Author font size */
-    color: rgba(255, 255, 255, 0.7); /* Slightly subdued color */
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-top: 0;
+    font-size: 0.85em;
+    color: #2196F3; /* Warna biru untuk hashtag */
+    background-color: rgba(33, 150, 243, 0.1); /* Latar belakang biru transparan */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Hapus underline jika ada */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
 }
 
-/* Keyframes for fadeInSlideUp animation (for word cards) */
+.word-card .hashtag:hover {
+    background-color: rgba(33, 150, 243, 0.2);
+    color: #1976D2; /* Biru lebih gelap saat hover */
+}
+
+/* Keyframes untuk Animasi fadeInSlideUp (untuk kartu kata-kata) */
+/* Pastikan ini ada di file CSS Anda dan tidak ganda */
 @keyframes fadeInSlideUp {
     from {
         opacity: 0;
@@ -345,21 +190,44 @@ html, body {
         padding: 50px 30px;
         gap: 30px;
     }
+    .word-card {
+        padding: 25px;
+        max-width: 500px;
+    }
     .word-card .quote {
-        font-size: 1.4em;
+        font-size: 1.3em;
+    }
+    .word-card .profile-pic {
+        width: 45px; /* Ukuran gambar profil di mobile */
+        height: 45px;
+    }
+    .word-card .social-name {
+        font-size: 1em;
+    }
+    .word-card .social-handle {
+        font-size: 0.85em;
+    }
+    .word-card .color-dots {
+        top: 3px;
+        right: 0px;
+        gap: 3px;
+    }
+    .word-card .dot {
+        width: 8px;
+        height: 8px;
     }
 }
 
 @media (max-width: 768px) {
     .header-content.header-internal {
-        flex-direction: column; /* Stack logo and title */
+        flex-direction: column; /* Tumpuk logo dan judul */
         align-items: center;
         padding-left: 20px;
         padding-right: 20px;
     }
     .header-content.header-internal .logo {
         margin-right: 0;
-        margin-bottom: 15px; /* Space between logo and title */
+        margin-bottom: 15px; /* Jarak antara logo dan judul */
     }
     .header-content.header-internal .logo img {
         max-height: 50px;
@@ -373,13 +241,28 @@ html, body {
         gap: 25px;
     }
     .word-card {
-        padding: 25px;
+        padding: 20px;
+        max-width: 450px;
     }
     .word-card .quote {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
-    .word-card .author {
+    .word-card .author { /* Author style dihilangkan di HTML, ini tidak dipakai lagi */
         font-size: 0.9em;
+    }
+    .word-card .hashtag {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+    .word-card .profile-pic {
+        width: 40px; /* Ukuran gambar profil di mobile */
+        height: 40px;
+    }
+    .word-card .social-name {
+        font-size: 0.95em;
+    }
+    .word-card .social-handle {
+        font-size: 0.8em;
     }
 }
 
@@ -403,13 +286,24 @@ html, body {
         gap: 20px;
     }
     .word-card {
-        padding: 20px;
+        padding: 15px;
+        max-width: 350px; /* Lebih kecil lagi */
     }
     .word-card .quote {
         font-size: 1em;
         line-height: 1.4;
     }
-    .word-card .author {
-        font-size: 0.8em;
+    .word-card .hashtag {
+        font-size: 0.75em;
+    }
+    .word-card .profile-pic {
+        width: 35px; /* Ukuran gambar profil di mobile */
+        height: 35px;
+    }
+    .word-card .social-name {
+        font-size: 0.9em;
+    }
+    .word-card .social-handle {
+        font-size: 0.75em;
     }
 }
