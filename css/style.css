@@ -131,12 +131,26 @@ header {
     padding: 10px;
 }
 
+/* Gaya Logo di dalam Hamburger Menu (hanya terlihat saat terbuka di mobile) */
+.main-nav .menu-logo {
+    display: none; /* Sembunyikan di desktop */
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main-nav .menu-logo img {
+    max-width: 120px; /* Ukuran logo di dalam menu hamburger */
+    height: auto;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
 /* ==================================== */
 /* Gaya Konten Utama (main) */
 /* ==================================== */
 .main-content {
     flex: 1; /* Memastikan main mengambil sisa ruang */
-    padding-top: 2rem; /* Tambahkan padding agar tidak terlalu dekat dengan header */
+    padding-top: 0; /* Tidak perlu padding di sini, karena hero punya padding besar */
 }
 
 /* Gaya Bagian (section) Umum */
@@ -397,18 +411,24 @@ h1, h2, h3 {
         right: -100%; /* Sembunyikan menu di luar layar */
         width: 75%; /* Lebar menu saat terbuka */
         height: 100%;
-        background-color: var(--color-dark-gray); /* Latar belakang menu hamburger */
+        background-color: var(--color-black); /* Latar belakang menu hamburger hitam pekat */
         transition: right 0.3s ease-in-out;
         z-index: 1000;
-        padding-top: 70px; /* Ruang untuk header di atas menu */
+        padding-top: 70px; /* Ruang untuk logo di atas menu */
         box-shadow: -5px 0 20px rgba(0, 0, 0, 0.7); /* Bayangan menu lebih kuat */
         flex-direction: column; /* Mengubah arah flexbox menjadi kolom */
         justify-content: flex-start; /* Mulai dari atas */
+        align-items: center; /* Pusatkan konten menu */
     }
 
     .main-nav.active {
         right: 0; /* Geser menu ke dalam layar */
         display: flex; /* Tampilkan menu saat aktif */
+    }
+
+    .main-nav .menu-logo {
+        display: block; /* Tampilkan logo di dalam menu hamburger */
+        margin-bottom: 20px; /* Jarak antara logo dan item menu */
     }
 
     .main-nav ul.nav-links {
