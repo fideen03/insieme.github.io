@@ -1,6 +1,6 @@
 /* Import font dari Google Fonts */
-/* Menggunakan Josefin Sans untuk judul/logo, Source Sans Pro untuk teks umum dan navigasi */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+/* Menggunakan Josefin Sans (sebelumnya), Source Sans Pro (teks umum), dan Playfair Display (untuk judul INSIEME) */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
 /* --- General Body & Root Styles --- */
 html, body {
@@ -92,16 +92,26 @@ html, body {
     filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Efek bayangan halus pada logo */
 }
 
-/* Gaya jika menggunakan teks sebagai logo (uncomment di HTML jika dipakai) */
+/* Gaya untuk logo teks "INSIEME" dengan font Playfair Display dan animasi warna */
 .text-logo {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Playfair Display', serif; /* Menggunakan font Playfair Display */
     font-weight: 700;
-    font-size: 4em; /* Ukuran font lebih besar untuk kesan kuat */
+    font-size: 4.5em; /* Ukuran font lebih besar untuk kesan kuat */
     text-transform: uppercase;
-    letter-spacing: 0.18em; /* Sedikit lebih renggang */
+    letter-spacing: 0.2em; /* Sedikit lebih renggang */
     margin-bottom: 25px;
-    color: #fff;
     text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* Bayangan teks lebih jelas */
+    
+    /* Animasi perubahan warna */
+    animation: colorCycle 6s infinite ease-in-out; /* Durasi 6s, infinite, berulang halus */
+}
+
+/* Keyframes untuk perubahan warna INSIEME */
+@keyframes colorCycle {
+    0% { color: #FFFFFF; } /* Putih */
+    33% { color: #A9A9A9; } /* Abu-abu */
+    66% { color: #F5F5DC; } /* Krem */
+    100% { color: #FFFFFF; } /* Kembali ke Putih */
 }
 
 .tagline p {
@@ -215,7 +225,8 @@ html, body {
 /* Untuk tablet dan laptop kecil */
 @media (max-width: 992px) {
     .text-logo {
-        font-size: 3em;
+        font-size: 3.5em; /* Ukuran font disesuaikan untuk layar lebih kecil */
+        letter-spacing: 0.15em;
     }
     .tagline p {
         font-size: 1.1em;
@@ -239,8 +250,8 @@ html, body {
         margin-bottom: 20px;
     }
     .text-logo {
-        font-size: 2.5em;
-        letter-spacing: 0.15em;
+        font-size: 2.8em; /* Ukuran font lebih kecil lagi */
+        letter-spacing: 0.12em;
         margin-bottom: 20px;
     }
     .tagline p {
@@ -280,7 +291,7 @@ html, body {
         max-height: 60px;
     }
     .text-logo {
-        font-size: 2em;
+        font-size: 2.2em; /* Ukuran font terkecil di mobile */
         letter-spacing: 0.1em;
     }
     .tagline p {
