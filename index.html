@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSIEME - Angkatan Pondok</title>
+    <title>AKANG INSIEME</title>
     <!-- Memuat file CSS eksternal. Semua gaya, termasuk loading screen dan animasi, ada di sini. -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Memuat font dari Google Fonts -->
@@ -14,7 +14,13 @@
 <body>
     <!-- Loading Screen: Muncul saat halaman pertama kali dimuat -->
     <div id="loading-screen">
-        <div class="loader"></div>
+        <div class="loading-content">
+            <div class="loader"></div>
+            <p class="progress-text"><span id="loading-percentage">0</span>%</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-bar-fill"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Header Website: Berisi navigasi utama (tanpa logo lagi di sini) -->
@@ -29,7 +35,7 @@
                     <li><a href="index.html">Beranda</a></li>
                     <li><a href="photos.html">Foto Bersama</a></li>
                     <li><a href="social.html">Media Sosial</a></li>
-                    <li><a href="books.html">Karya Buku</a></li>
+                    <li><a href="books.html">Karya</a></li>
                     <li><a href="profiles.html">Profil Kami</a></li>
                 </ul>
             </nav>
@@ -47,7 +53,7 @@
                 </div>
                 <!-- Teks "Selamat Datang" yang berubah warna -->
                 <h1>Selamat Datang di <span id="welcome-text-insieme">INSIEME</span></h1>
-                <p>Bersama merajut asa, mengukir karya, dan berbagi cerita.</p>
+                <p>ORA NGOPI, ORA NYENI KANG!</p>
             </div>
         </section>
 
@@ -74,22 +80,45 @@
         // JavaScript untuk mengontrol Loading Screen
         const loadingScreen = document.getElementById('loading-screen');
         const body = document.body;
+        const loadingPercentageText = document.getElementById('loading-percentage');
+        const progressBarFill = document.getElementById('progress-bar-fill');
+
+        // Fungsi untuk memperbarui progress bar
+        function updateProgressBar(percentage) {
+            loadingPercentageText.textContent = percentage;
+            progressBarFill.style.width = percentage + '%';
+        }
+
+        // Simulasikan progress loading
+        let currentProgress = 0;
+        const loadingInterval = setInterval(() => {
+            currentProgress += 10;
+            if (currentProgress <= 100) {
+                updateProgressBar(currentProgress);
+            } else {
+                clearInterval(loadingInterval);
+            }
+        }, 100); // Update setiap 100ms
 
         // Event listener yang akan dijalankan setelah seluruh DOM (HTML) dimuat.
         // Ini memastikan elemen-elemen ada sebelum JavaScript mencoba memanipulasinya.
         document.addEventListener('DOMContentLoaded', () => {
-            // Simulasi waktu loading. Dalam aplikasi nyata, Anda bisa menunggu gambar besar atau
-            // aset penting lainnya selesai dimuat sebelum menyembunyikan loading screen.
+            // Setelah DOMContentLoaded, mulai transisi loading screen
             setTimeout(() => {
-                loadingScreen.classList.add('fade-out'); // Menambahkan kelas untuk memulai animasi fade-out
-                body.classList.add('loaded'); // Menambahkan kelas 'loaded' ke body untuk memulai animasi konten utama
-                
-                // Menunggu animasi fade-out selesai sebelum menyembunyikan elemen loading screen sepenuhnya.
-                // Ini mencegah elemen loading screen mengganggu interaksi setelah tidak terlihat.
-                loadingScreen.addEventListener('transitionend', () => {
-                    loadingScreen.style.display = 'none'; // Sembunyikan elemen setelah transisi selesai
-                }, { once: true }); // Listener hanya akan berjalan sekali
-            }, 1500); // Durasi loading screen 1.5 detik. Anda bisa menyesuaikannya.
+                // Pastikan progress bar mencapai 100% sebelum fade-out
+                updateProgressBar(100); 
+                clearInterval(loadingInterval); // Hentikan interval jika masih berjalan
+
+                setTimeout(() => {
+                    loadingScreen.classList.add('fade-out'); // Menambahkan kelas untuk memulai animasi fade-out
+                    body.classList.add('loaded'); // Menambahkan kelas 'loaded' ke body untuk memulai animasi konten utama
+                    
+                    loadingScreen.addEventListener('transitionend', () => {
+                        loadingScreen.style.display = 'none'; // Sembunyikan elemen setelah transisi selesai
+                    }, { once: true });
+                }, 500); // Penundaan singkat setelah progress 100% sebelum fade-out
+            }, 1500); // Total durasi simulasi loading screen
+            
 
             // ====================================
             // JavaScript untuk Hamburger Menu
