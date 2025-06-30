@@ -163,11 +163,13 @@ h1, h2, h3 {
 .hero-section {
     position: relative;
     padding: 8rem 0; /* Padding atas/bawah lebih besar */
-    /* Menghilangkan placeholder gambar Fore Coffee, hanya menyisakan background hitam */
-    background: var(--color-black); /* Latar belakang hitam penuh */
+    /* Menggunakan gambar yang diunggah sebagai latar belakang */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), /* Overlay gelap */
+                url('images/WhatsApp Image 2025-06-30 at 09.38.29.jpeg') no-repeat center center/cover;
+    background-blend-mode: multiply; /* Untuk menggelapkan gambar di bawah overlay */
     color: var(--color-white);
-    border-radius: 0;
-    box-shadow: none;
+    border-radius: 0; /* Hapus border-radius dari section umum */
+    box-shadow: none; /* Hapus box-shadow dari section umum */
     /* Animasi untuk hero section */
     animation: fadeInScale 1s ease-out forwards;
     animation-delay: 1.3s;
@@ -183,8 +185,8 @@ h1, h2, h3 {
     100% { opacity: 1; transform: scale(1); }
 }
 
-.hero-section::before { /* Menghilangkan overlay gelap karena background sudah hitam */
-    content: none; /* Menghilangkan pseudo-element ini */
+.hero-section::before { /* Menghilangkan pseudo-element ini karena sudah ada gradient di background */
+    content: none;
 }
 
 .hero-inner {
@@ -198,10 +200,10 @@ h1, h2, h3 {
 
 /* Gaya baru untuk Logo di Hero Section (disesuaikan ukurannya) */
 .hero-logo img {
-    max-width: 160px; /* Ukuran logo disesuaikan agar tidak terlalu besar/kecil */
+    max-width: 250px; /* Ukuran logo disesuaikan agar tidak terlalu besar/kecil (agak diperbesar dari sebelumnya) */
     height: auto;
     display: block;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7)); /* Efek bayangan pada logo lebih lembut */
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8)); /* Efek bayangan pada logo lebih lembut */
     animation: gentleJump 2s infinite ease-in-out; /* Animasi lompat halus */
     margin-bottom: 20px; /* Jarak antara logo dan tulisan Selamat Datang */
 }
@@ -209,7 +211,7 @@ h1, h2, h3 {
 /* Animasi lompat halus (dipindahkan dari header, sekarang di hero-logo img) */
 @keyframes gentleJump {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); } /* Lompat sedikit lebih tinggi */
+    50% { transform: translateY(-15px); } /* Lompat sedikit lebih tinggi */
 }
 
 .hero-section h1 {
@@ -378,7 +380,7 @@ h1, h2, h3 {
 
     /* Logo di hero section untuk mobile */
     .hero-logo img {
-        max-width: 120px; /* Ukuran logo di mobile */
+        max-width: 150px; /* Ukuran logo di mobile */
         margin-bottom: 15px; /* Jarak di mobile */
     }
 
