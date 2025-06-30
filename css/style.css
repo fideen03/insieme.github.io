@@ -133,14 +133,14 @@ header {
 
 /* Gaya Logo di dalam Hamburger Menu (hanya terlihat saat terbuka di mobile) */
 .main-nav .menu-logo {
-    display: none; /* Sembunyikan di desktop */
+    display: none; /* Selalu sembunyikan logo di dalam menu hamburger */
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0; /* Hapus padding */
+    border-bottom: none; /* Hapus border */
 }
 
 .main-nav .menu-logo img {
-    max-width: 90px; /* Ukuran logo di dalam menu hamburger diperkecil */
+    max-width: 70px; /* Ukuran logo di dalam menu hamburger diperkecil */
     height: auto;
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 }
@@ -414,7 +414,7 @@ h1, h2, h3 {
         background-color: var(--color-black); /* Latar belakang menu hamburger hitam pekat */
         transition: right 0.3s ease-in-out;
         z-index: 1000;
-        padding-top: 70px; /* Ruang untuk logo di atas menu */
+        padding-top: 20px; /* Mengurangi padding-top karena logo dihilangkan */
         box-shadow: -5px 0 20px rgba(0, 0, 0, 0.7); /* Bayangan menu lebih kuat */
         flex-direction: column; /* Mengubah arah flexbox menjadi kolom */
         justify-content: flex-start; /* Mulai dari atas */
@@ -427,8 +427,7 @@ h1, h2, h3 {
     }
 
     .main-nav .menu-logo {
-        display: block; /* Tampilkan logo di dalam menu hamburger */
-        margin-bottom: 20px; /* Jarak antara logo dan item menu */
+        display: none; /* Menyembunyikan logo di dalam menu hamburger secara eksplisit */
     }
 
     .main-nav ul.nav-links {
