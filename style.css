@@ -390,130 +390,398 @@ html, body {
 
 
 /* --- Styles for Hadis Page (hadis.html) --- */
-.content-section.hadis-section {
-    flex-grow: 1;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 60px 40px;
-    box-sizing: border-box;
+/* Import fonts from Google Fonts */
+/* Using Josefin Sans, Playfair Display, Source Sans Pro, and Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&display=swap');
+
+/* --- General Body & Root Styles --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%; /* Ensure 100% width */
+    font-family: 'Source Sans Pro', sans-serif; /* Default font for general text */
+    color: #fff; /* Default text color */
+    overflow: hidden; /* Prevent scrollbars from appearing */
+    line-height: 1.6; /* Better readability */
+    -webkit-font-smoothing: antialiased; /* Smooth font rendering on WebKit/Chrome */
+    -moz-osx-font-smoothing: grayscale; /* Smooth font rendering on Firefox/macOS */
+    background-color: #000; /* Fallback background color */
+}
+
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Separates header & footer */
+    align-items: center;
+    text-align: center;
+    padding: 20px; /* Global padding for content */
+    box-sizing: border-box; /* Ensure padding doesn't add to size */
+}
+
+/* --- Background Image & Overlay --- */
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1200px; /* Max width for the whole section */
-    margin: 0 auto;
+    height: 100%;
+    background-image: url('images/background.jpg'); /* Make sure the image path is correct */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5); /* Slightly darker for better text contrast */
+    z-index: -1; /* Move behind content */
+    transform: scale(1.05); /* Slightly zoomed in initially for smooth transition */
+    
+    /* Background animation on load and continuous subtle movement */
+    animation: backgroundFadeIn 2s ease-out forwards, backgroundZoom 20s infinite alternate ease-in-out;
+}
+
+/* Keyframes for background fade-in */
+@keyframes backgroundFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Keyframes for subtle background zoom */
+@keyframes backgroundZoom {
+    0% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1.08); /* Slightly more zoom at the end */
+    }
+}
+
+/* --- Header & Content Styling (Homepage) --- */
+.header-content {
+    z-index: 1; /* Ensure it's above the background */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 40px; /* Space between hadis-card elements */
+    width: 100%;
+    max-width: 880px; /* Max width for main content */
+    padding-top: 5vh; /* Distance from top */
+    box-sizing: border-box;
+    
+    /* General fade-in animation for header */
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1.5s ease-out forwards;
 }
 
-.hadis-card {
-    background-color: #1a1a1a; /* Dark background like GoTo */
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    overflow: hidden; /* Important for contained elements like image */
+.logo img {
+    max-height: 90px; /* Flexible logo size */
+    width: auto;
+    display: block;
+    margin-bottom: 25px; /* Space between logo and tagline */
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); /* Subtle shadow effect on logo */
+}
+
+/* Styles for text logo "INSIEME" (if uncommented in HTML - currently not active in index.html) */
+.text-logo {
+    font-family: 'Playfair Display', serif; /* Using Playfair Display font */
+    font-weight: 700;
+    font-size: 4.5em; /* Larger font size for strong impression */
+    text-transform: uppercase;
+    letter-spacing: 0.2em; /* Slightly wider spacing */
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* Clearer text shadow */
+    
+    /* Color cycling animation for INSIEME text */
+    animation: colorCycle 6s infinite ease-in-out; /* 6s duration, infinite, smooth repeat */
+}
+
+/* Keyframes for INSIEME color change */
+@keyframes colorCycle {
+    0% { color: #FFFFFF; } /* White */
+    33% { color: #A9A9A9; } /* Gray */
+    66% { color: #F5F5DC; } /* Cream */
+    100% { color: #FFFFFF; } /* Back to White */
+}
+
+.tagline p {
+    font-family: 'Montserrat', sans-serif; /* Changed to Montserrat for tagline */
+    font-weight: 400; /* Lighter weight */
+    font-size: 1.3em; /* Appropriate size */
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    text-transform: capitalize; /* Capitalize each word */
+    margin-bottom: 50px; /* More space to navigation */
+    max-width: 600px; /* Limit tagline width */
+    
+    opacity: 0; /* Start hidden */
+    animation: slideUp 1s ease-out 0.8s forwards; /* Slide-up animation with delay */
+}
+
+/* --- Main Navigation --- */
+.main-nav {
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1.5s ease-out 1.5s forwards; /* Fade-in animation with delay */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Responsive wrapping */
+    justify-content: center;
+    gap: 35px; /* Space between nav items */
+}
+
+.main-nav li a {
+    font-family: 'Source Sans Pro', sans-serif; /* Keep Source Sans Pro for nav links */
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 12px 25px; /* Proportional padding */
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Slightly thicker, transparent border */
+    border-radius: 50px; /* Pill-shaped buttons */
+    
+    /* Transitions for smooth hover effects */
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Glassmorphism effect */
+    backdrop-filter: blur(3px); 
+    -webkit-backdrop-filter: blur(3px); /* WebKit compatibility */
+}
+
+.main-nav li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background on hover */
+    color: #fff; /* Keep white */
+    border-color: #fff; /* Solid border on hover */
+    transform: translateY(-5px); /* Lift up on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+
+/* --- Footer Social Icons --- */
+.footer-social {
+    z-index: 1;
+    padding-bottom: 40px; /* Distance from bottom */
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 1.5s ease-out 2s forwards; /* Last fade-in animation */
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 2em; /* Larger icon size */
+    margin: 0 20px; /* Space between icons */
+    text-decoration: none;
+    
+    /* Transitions for smooth hover effects */
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #FFD700; /* Gold/yellow highlight on hover */
+    transform: scale(1.25) rotate(5deg); /* Slightly enlarge and rotate */
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Glow effect */
+}
+
+/* --- Generic Keyframe Animations --- */
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-up and fade-in animation */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* More initial movement */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Styles for Internal Pages (e.g., kata-kata.html and hadis.html now) --- */
+.header-content.header-internal {
+    padding-top: 3vh; /* Reduce top padding for internal pages */
+    justify-content: flex-start; /* Logo to top-left */
+    align-items: flex-start; /* Header content left-aligned */
+    flex-direction: row; /* Logo and title side-by-side */
     width: 100%;
-    max-width: 1000px; /* Max width for one hadis card */
-    position: relative; /* For animations */
+    max-width: none; /* Let header be full width */
+    padding-left: 40px; /* Left padding */
+    padding-right: 40px; /* Right padding */
+}
+
+.header-content.header-internal .logo {
+    margin-bottom: 0; /* Remove default bottom margin */
+    margin-right: 20px; /* Space between logo and page title */
+}
+
+.header-content.header-internal .logo img {
+    max-height: 60px; /* Smaller logo size for internal pages */
+    margin-bottom: 0;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.8em; /* Page title size */
+    color: #fff;
+    letter-spacing: 0.1em;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    margin: 0; /* Remove default h1 margin */
+    text-transform: uppercase;
+    opacity: 0; /* For animation */
+    animation: fadeIn 1.5s ease-out 0.5s forwards; /* Appear after logo */
+}
+
+/* Section for "Kata-Kata" and "Hadis" content (now using same card model) */
+.content-section.words-section { /* This class will now also be used by hadis.html */
+    flex-grow: 1; /* Allow this section to take remaining space */
+    overflow-y: auto; /* Enable scrolling if content is long */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 60px 40px; /* Internal padding */
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1000px; /* Max width for card section */
+    margin: 0 auto; /* Center the cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Space between word cards */
+}
+
+.word-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Nearly white background */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 550px; /* Card width based on image */
+    box-sizing: border-box;
+    text-align: left; /* Text left-aligned inside card */
+    color: #333; /* Dark text color inside card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover animation */
     
     opacity: 0; /* For entrance animation */
     transform: translateY(30px); /* For entrance animation */
-    animation: fadeInSlideUp 1s ease-out forwards; /* Default entrance animation */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Default animation */
 }
 
-.hadis-card:hover {
-    transform: translateY(-5px) scale(1.005); /* Slightly lift and enlarge on hover */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+.word-card:hover {
+    transform: translateY(-5px) scale(1.01); /* Slightly lift and enlarge */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Stronger shadow */
 }
 
-.hadis-row {
+/* Header inside card (Profile part) */
+.card-header { /* No longer .word-card .card-header to make it more generic */
     display: flex;
-    flex-direction: row; /* Default: image on left, text on right */
-    align-items: stretch; /* IMPORTANT: Allows both flex items to stretch to the height of the tallest one */
-    width: 100%; /* Fill the width of hadis-card */
-}
-
-/* IMPORTANT: Remove fixed height from .hadis-image-container to allow text to determine row height */
-.hadis-image-container {
-    flex: 1; /* Take half width */
-    /* REMOVED: height property here and in media queries */
-    overflow: hidden;
-    position: relative;
-    animation: none; /* Disable previous animations on this element */
-    transform: none; /* Disable previous transforms */
-    opacity: 1; /* Ensure visible */
-}
-
-.hadis-image {
-    width: 100%;
-    height: 100%; /* Make image fill the flexible height of its container */
-    object-fit: cover; /* Ensure image covers the area without distortion */
-    display: block;
-    filter: brightness(0.8) contrast(1.1); /* Slight color adjustments */
-}
-
-.hadis-text-container {
-    flex: 1; /* Take half width */
-    padding: 40px;
-    box-sizing: border-box;
-    text-align: left; /* Text left-aligned */
-    color: #f0f0f0; /* Light text color */
-    animation: none; /* Disable previous animations */
-    transform: none; /* Disable previous transforms */
-    opacity: 1; /* Ensure visible */
-}
-
-.hadis-title {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 2.2em;
-    color: #fff;
-    margin-top: 0;
+    align-items: center;
     margin-bottom: 20px;
+    position: relative; /* For color dots positioning */
+    justify-content: flex-start; /* Align profile info to the left */
+}
+
+.profile-info { /* No longer .word-card .profile-info */
+    display: flex;
+    flex-direction: column;
+    margin-left: 0; /* Ensure no extra margin here */
+}
+
+.social-name { /* No longer .word-card .social-name */
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700; /* Bold for name */
+    font-size: 1.1em;
+    color: #333;
     line-height: 1.2;
 }
 
-.hadis-arabic {
-    font-family: 'Source Sans Pro', sans-serif;
-    font-size: 1.2em;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    color: #ddd;
-    text-align: right; /* Right-aligned for Arabic text */
-    direction: rtl; /* Important for Arabic text rendering */
-}
-
-.hadis-translation {
+.social-handle { /* No longer .word-card .social-handle */
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
-    font-size: 1em;
-    line-height: 1.6;
-    color: #ccc;
-    margin-bottom: 30px;
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.2;
 }
 
-.read-more-button {
-    display: inline-block;
-    background-color: #28a745; /* GoTo green color */
-    color: #fff;
-    padding: 12px 25px;
-    border-radius: 8px;
-    text-decoration: none;
+/* Color dots in the top right corner of the card */
+.color-dots { /* No longer .word-card .color-dots */
+    position: absolute;
+    top: 5px; /* Adjust vertical position */
+    right: 0px; /* Adjust horizontal position */
+    display: flex;
+    gap: 5px; /* Space between dots */
+}
+
+.dot { /* No longer .word-card .dot */
+    width: 10px; /* Dot size */
+    height: 10px;
+    border-radius: 50%; /* Round shape */
+    border: 1px solid rgba(0,0,0,0.1); /* Subtle border on dots */
+}
+
+.quote { /* No longer .word-card .quote */
+    font-family: 'Montserrat', sans-serif; /* Font for quotes, more modern */
+    font-weight: 700; /* Bold as in the image */
+    font-size: 1.5em; /* Quote font size */
+    line-height: 1.4;
+    letter-spacing: 0.02em; /* Slightly tighter spacing */
+    font-style: normal; /* Normal style, not italic */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* New style for quote-arabic inside word-card */
+.quote-arabic {
+    font-family: 'Source Sans Pro', sans-serif; /* Or a specific Arabic font if imported */
+    font-size: 1.3em;
+    line-height: 1.8;
+    color: #555; /* Slightly darker for better readability on light background */
+    text-align: right;
+    direction: rtl; /* For right-to-left text */
+    margin-bottom: 15px; /* Space between Arabic and translation */
+}
+
+
+.hashtags { /* No longer .word-card .hashtags */
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between hashtags */
+}
+
+.hashtag { /* No longer .word-card .hashtag */
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 0.85em;
+    color: #2196F3; /* Blue color for hashtag */
+    background-color: rgba(33, 150, 243, 0.1); /* Transparent blue background */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline if any */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
 }
 
-.read-more-button:hover {
-    background-color: #218838; /* Darker green on hover */
-    transform: translateY(-2px);
+.hashtag:hover {
+    background-color: rgba(33, 150, 243, 0.2);
+    color: #1976D2; /* Darker blue on hover */
 }
 
-/* Keyframes for element entrance animations */
-/* (slideRightIn and slideLeftIn are no longer explicitly used, fadeInSlideUp is dominant) */
+/* Keyframes for fadeInSlideUp animation (for word cards) */
+/* (Defined above, ensuring it's not duplicated) */
 
 
 /* --- Responsive Media Queries --- */
@@ -549,52 +817,26 @@ html, body {
         padding: 25px;
         max-width: 500px;
     }
-    .word-card .quote {
+    .quote { /* No longer .word-card .quote */
         font-size: 1.3em;
     }
-    .word-card .social-name {
+    .social-name {
         font-size: 1em;
     }
-    .word-card .social-handle {
+    .social-handle {
         font-size: 0.85em;
     }
-    .word-card .color-dots {
+    .color-dots {
         top: 3px;
         right: 0px;
         gap: 3px;
     }
-    .word-card .dot {
+    .dot {
         width: 8px;
         height: 8px;
     }
-
-    /* Hadis Page specific adjustments */
-    .hadis-card {
-        max-width: 700px; /* Card width adjusted */
-    }
-    .hadis-row {
-        flex-direction: column; /* Stack image and text on tablets */
-    }
-    /* IMPORTANT: Image container height removed from here as well */
-    .hadis-image-container {
-        /* no fixed height */
-    }
-    .hadis-text-container {
-        padding: 30px;
-        text-align: center; /* Center text when stacked */
-    }
-    .hadis-title {
-        font-size: 1.8em;
-    }
-    .hadis-arabic {
-        font-size: 1.1em;
-        text-align: center; /* Still right-aligned in center */
-    }
-    .hadis-translation {
-        font-size: 0.95em;
-    }
-    .read-more-button {
-        padding: 10px 20px;
+    .quote-arabic {
+        font-size: 1.2em; /* Adjusted for smaller screens */
     }
 }
 
@@ -661,42 +903,21 @@ html, body {
         padding: 20px;
         max-width: 450px;
     }
-    .word-card .quote {
+    .quote {
         font-size: 1.1em;
     }
-    .word-card .hashtag {
+    .hashtag {
         font-size: 0.8em;
         padding: 4px 8px;
     }
-    .word-card .social-name {
+    .social-name {
         font-size: 0.95em;
     }
-    .word-card .social-handle {
+    .social-handle {
         font-size: 0.8em;
     }
-
-    /* Hadis Page specific adjustments */
-    .hadis-section {
-        padding: 40px 20px;
-    }
-    .hadis-card {
-        margin-bottom: 30px;
-        max-width: 100%;
-    }
-    .hadis-image-container {
-        /* No fixed height needed here as it will stretch with text content */
-    }
-    .hadis-text-container {
-        padding: 25px;
-    }
-    .hadis-title {
-        font-size: 1.5em;
-    }
-    .hadis-arabic {
-        font-size: 1em;
-    }
-    .hadis-translation {
-        font-size: 0.85em;
+    .quote-arabic {
+        font-size: 1.1em; /* Adjusted for smaller screens */
     }
 }
 
@@ -749,48 +970,20 @@ html, body {
         padding: 15px;
         max-width: 350px; /* Smallest width */
     }
-    .word-card .quote {
+    .quote {
         font-size: 1em;
         line-height: 1.4;
     }
-    .word-card .hashtag {
+    .hashtag {
         font-size: 0.75em;
     }
-    .word-card .social-name {
+    .social-name {
         font-size: 0.9em;
     }
-    .word-card .social-handle {
+    .social-handle {
         font-size: 0.75em;
     }
-
-    /* Hadis Page specific adjustments */
-    .hadis-section {
-        padding: 30px 15px;
-    }
-    .hadis-card {
-        border-radius: 10px;
-        margin-bottom: 25px;
-    }
-    .hadis-image-container {
-        /* No fixed height needed here as it will stretch with text content */
-    }
-    .hadis-text-container {
-        padding: 20px;
-    }
-    .hadis-title {
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-    .hadis-arabic {
-        font-size: 0.9em;
-        line-height: 1.7;
-    }
-    .hadis-translation {
-        font-size: 0.8em;
-        margin-bottom: 20px;
-    }
-    .read-more-button {
-        padding: 8px 18px;
-        font-size: 0.8em;
+    .quote-arabic {
+        font-size: 1em; /* Adjusted for smallest screens */
     }
 }
