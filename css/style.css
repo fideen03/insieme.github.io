@@ -140,7 +140,7 @@ header {
 }
 
 .main-nav .menu-logo img {
-    max-width: 120px; /* Ukuran logo di dalam menu hamburger */
+    max-width: 90px; /* Ukuran logo di dalam menu hamburger diperkecil */
     height: auto;
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 }
@@ -214,7 +214,7 @@ h1, h2, h3 {
 
 /* Gaya baru untuk Logo di Hero Section (disesuaikan ukurannya) */
 .hero-logo img {
-    max-width: 250px; /* Ukuran logo disesuaikan agar tidak terlalu besar/kecil (agak diperbesar dari sebelumnya) */
+    max-width: 250px; /* Ukuran logo di hero section */
     height: auto;
     display: block;
     filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.8)); /* Efek bayangan pada logo lebih lembut */
@@ -265,7 +265,7 @@ h1, h2, h3 {
 
 @keyframes slideInRight {
     0% { opacity: 0; transform: translateX(50px); }
-    100% { opacity: 1; transform: translateX(0); }
+    100% { transform: translateX(0); }
 }
 
 .about-us-section h2 {
