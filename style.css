@@ -987,3 +987,303 @@ html, body {
         font-size: 1em; /* Adjusted for smallest screens */
     }
 }
+
+/* --- Styles for Profiles Page (profil-akang.html) --- */
+.content-section.profiles-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 60px 40px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px; /* Lebar maksimal keseluruhan section */
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap; /* Izinkan kartu untuk melengkung ke baris berikutnya */
+    justify-content: center; /* Pusat kartu secara horizontal */
+    gap: 40px; /* Jarak antar kartu profil */
+    align-content: flex-start; /* Untuk mengisi ruang kosong di atas jika ada banyak baris kartu */
+}
+
+.profile-card {
+    background-color: #fff; /* Latar belakang putih untuk kartu */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 350px; /* Lebar kartu profil tunggal */
+    color: #333; /* Warna teks gelap di dalam kartu */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi hover */
+    
+    opacity: 0; /* Untuk animasi masuk */
+    transform: translateY(30px); /* Untuk animasi masuk */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animasi masuk default */
+    display: flex; /* Untuk menumpuk konten di dalamnya */
+    flex-direction: column;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px) scale(1.02); /* Sedikit naik dan membesar saat hover */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Bayangan lebih kuat saat hover */
+}
+
+.profile-bg-image-container {
+    width: 100%;
+    height: 180px; /* Tinggi latar belakang gambar header kartu */
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8); /* Sedikit redup */
+}
+
+.profile-avatar {
+    position: absolute;
+    top: 100%; /* Awalnya di bawah container gambar */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Geser ke atas 50% dari tingginya sendiri */
+    width: 100px; /* Ukuran avatar */
+    height: 100px;
+    border-radius: 50%;
+    background-color: #fff; /* Latar belakang avatar putih */
+    padding: 5px; /* Padding untuk border putih */
+    box-shadow: 0 0 0 5px #fff, 0 5px 15px rgba(0,0,0,0.2); /* Border putih dan bayangan */
+    z-index: 1; /* Pastikan di atas gambar latar belakang */
+    box-sizing: border-box;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info-content {
+    padding: 70px 20px 30px; /* Padding disesuaikan karena avatar meluap ke sini */
+    text-align: center;
+    position: relative; /* Untuk positioning */
+    flex-grow: 1; /* Agar konten info mengisi ruang sisa */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profile-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.profile-location {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.profile-bio {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 25px;
+    min-height: 50px; /* Agar bio tidak terlalu pendek */
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-top: auto; /* Mendorong ke bawah */
+    margin-bottom: 25px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.4em;
+    color: #333;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 0.8em;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.profile-button {
+    display: inline-block;
+    background-color: #FF5E7F; /* Warna pink dari gambar */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 50px; /* Bentuk pil */
+    text-decoration: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: fit-content; /* Sesuai lebar teks */
+    margin: 0 auto; /* Tengah-kan tombol */
+}
+
+.profile-button:hover {
+    background-color: #e54b6d; /* Warna pink lebih gelap saat hover */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+/* --- Responsive Media Queries (Profiles Page) --- */
+
+@media (max-width: 992px) {
+    .content-section.profiles-section {
+        padding: 50px 20px;
+        gap: 30px;
+    }
+    .profile-card {
+        max-width: 320px; /* Sedikit lebih kecil */
+    }
+    .profile-bg-image-container {
+        height: 160px;
+    }
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+        padding: 4px;
+    }
+    .profile-info-content {
+        padding-top: 60px;
+    }
+    .profile-name {
+        font-size: 1.6em;
+    }
+    .profile-location {
+        font-size: 0.9em;
+    }
+    .profile-bio {
+        font-size: 0.85em;
+    }
+    .stat-number {
+        font-size: 1.3em;
+    }
+    .stat-label {
+        font-size: 0.75em;
+    }
+    .profile-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-section.profiles-section {
+        padding: 40px 15px;
+        gap: 25px;
+    }
+    .profile-card {
+        max-width: 300px; /* Lebih kecil lagi */
+    }
+    .profile-bg-image-container {
+        height: 140px;
+    }
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        padding: 3px;
+    }
+    .profile-info-content {
+        padding-top: 55px;
+    }
+    .profile-name {
+        font-size: 1.5em;
+    }
+    .profile-location {
+        font-size: 0.85em;
+    }
+    .profile-bio {
+        font-size: 0.8em;
+        min-height: 40px;
+    }
+    .profile-stats {
+        padding-top: 15px;
+        margin-bottom: 20px;
+    }
+    .stat-number {
+        font-size: 1.2em;
+    }
+    .stat-label {
+        font-size: 0.7em;
+    }
+    .profile-button {
+        padding: 8px 18px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section.profiles-section {
+        padding: 30px 10px;
+        gap: 20px;
+    }
+    .profile-card {
+        max-width: 280px; /* Maksimal lebar untuk mobile */
+    }
+    .profile-bg-image-container {
+        height: 120px;
+    }
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        padding: 2px;
+    }
+    .profile-info-content {
+        padding: 50px 15px 25px;
+    }
+    .profile-name {
+        font-size: 1.4em;
+    }
+    .profile-location {
+        font-size: 0.8em;
+    }
+    .profile-bio {
+        font-size: 0.75em;
+        min-height: 30px;
+    }
+    .profile-stats {
+        padding-top: 10px;
+        margin-bottom: 15px;
+    }
+    .stat-number {
+        font-size: 1.1em;
+    }
+    .stat-label {
+        font-size: 0.65em;
+    }
+    .profile-button {
+        padding: 7px 15px;
+        font-size: 0.8em;
+    }
+}
