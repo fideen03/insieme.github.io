@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSIEME | Galeri</title>
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Playfair+Display:wght@700&family=Source+Sans+Pro:wght@400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="background-image gallery-bg"></div>
+
+        <header class="header-content header-internal">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/insieme-logo.png" alt="Insieme Logo"> 
+                </a>
+            </div>
+            <h1 class="page-title fade-in-delay">GALERI INSIEME</h1>
+        </header>
+
+        <main class="content-section gallery-section">
+            <div class="gallery-wrapper fade-in-slide-up">
+                <aside class="gallery-sidebar">
+                    <div class="sidebar-profile">
+                        <img src="images/profile-akang-avatar-small.jpg" alt="Admin Avatar" class="sidebar-avatar">
+                        <p class="sidebar-name">Admin Insieme</p>
+                        <p class="sidebar-role">Pengelola Galeri</p>
+                    </div>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li><a href="#acara2025" class="active">Acara 2025</a></li>
+                            <li><a href="#kegiatanrutin">Kegiatan Rutin</a></li>
+                            <li><a href="#silaturahmi">Silaturahmi</a></li>
+                            <li><a href="#lainlain">Lain-lain</a></li>
+                        </ul>
+                    </nav>
+                    <div class="sidebar-albums">
+                        <p class="album-heading">ALBUM</p>
+                        <ul>
+                            <li><a href="#subalbum1">Sub-album 1</a></li>
+                            <li><a href="#subalbum2">Sub-album 2</a></li>
+                            <li><a href="#subalbum3">Sub-album 3</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <section class="gallery-content">
+                    <div class="gallery-category" id="acara2025">
+                        <h2 class="category-title">Acara 2025</h2>
+                        <div class="gallery-grid">
+                            <a href="images/full-01.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-01.jpg" alt="Gambar Galeri 1">
+                            </a>
+                            <a href="images/full-02.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-02.jpg" alt="Gambar Galeri 2">
+                            </a>
+                            <a href="images/full-03.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-03.jpg" alt="Gambar Galeri 3">
+                            </a>
+                            <a href="images/full-04.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-04.jpg" alt="Gambar Galeri 4">
+                            </a>
+                            <a href="images/full-05.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-05.jpg" alt="Gambar Galeri 5">
+                            </a>
+                            <a href="images/full-06.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-06.jpg" alt="Gambar Galeri 6">
+                            </a>
+                            <a href="images/full-07.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-07.jpg" alt="Gambar Galeri 7">
+                            </a>
+                            <a href="images/full-08.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-08.jpg" alt="Gambar Galeri 8">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="gallery-category" id="kegiatanrutin">
+                        <h2 class="category-title">Kegiatan Rutin</h2>
+                        <div class="gallery-grid">
+                            <a href="images/full-09.jpg" class="gallery-item" data-lightbox="kegiatanrutin">
+                                <img src="images/gallery-thumb-09.jpg" alt="Gambar Galeri 9">
+                            </a>
+                            <a href="images/full-10.jpg" class="gallery-item" data-lightbox="kegiatanrutin">
+                                <img src="images/gallery-thumb-10.jpg" alt="Gambar Galeri 10">
+                            </a>
+                        </div>
+                    </div>
+                    </section>
+            </div>
+        </main>
+
+        <footer class="footer-social fade-in-delay-more">
+            <div class="social-icons">
+                <a href="https://instagram.com/insieme__000" target="_blank" aria-label="Instagram Insieme"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:akanginsieme@yahoo.com" target="_blank" aria-label="Email Insieme"><i class="fas fa-envelope"></i></a>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Simple placeholder for lightbox functionality
+                // In a real project, you'd integrate a lightbox library here
+                const imageUrl = this.href;
+                const lightboxDiv = document.createElement('div');
+                lightboxDiv.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;';
+                lightboxDiv.innerHTML = `<img src="${imageUrl}" style="max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 10px;">`;
+                lightboxDiv.addEventListener('click', () => lightboxDiv.remove());
+                document.body.appendChild(lightboxDiv);
+            });
+        });
+    </script>
+</body>
+</html>
