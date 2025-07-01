@@ -1287,3 +1287,319 @@ html, body {
         font-size: 0.8em;
     }
 }
+
+/* --- Styles for Gallery Page (galeri.html) --- */
+.background-image.gallery-bg {
+    filter: brightness(0.3); /* Lebih gelap untuk kontras sidebar yang lebih baik */
+}
+
+.content-section.gallery-section {
+    flex-grow: 1;
+    overflow: hidden; /* Konten utama akan scroll secara internal */
+    padding: 0; /* Hapus padding section agar wrapper bisa edge-to-edge */
+    width: 100%;
+    max-width: none; /* Biarkan section mengambil lebar penuh */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-wrapper {
+    display: flex;
+    flex-direction: row; /* Sidebar di kiri, konten di kanan */
+    width: 100%;
+    max-width: 1200px; /* Lebar maksimal wrapper galeri */
+    height: calc(100vh - 120px); /* Kurangi tinggi header dan footer */
+    background-color: rgba(255, 255, 255, 0.95); /* Latar belakang terang transparan */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden; /* Konten di dalamnya akan di-scroll secara internal */
+    
+    opacity: 0; /* Untuk animasi masuk */
+    transform: translateY(30px); /* Untuk animasi masuk */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animasi masuk default */
+}
+
+/* Sidebar Navigasi */
+.gallery-sidebar {
+    flex: 0 0 250px; /* Lebar tetap sidebar */
+    background-color: #333; /* Warna gelap sidebar */
+    color: #f0f0f0;
+    padding: 30px 0; /* Padding vertikal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto; /* Aktifkan scroll untuk sidebar jika kontennya panjang */
+    -webkit-overflow-scrolling: touch;
+}
+
+.sidebar-profile {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.sidebar-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.sidebar-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.sidebar-role {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 0.8em;
+    color: #aaa;
+}
+
+.sidebar-nav, .sidebar-albums {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.sidebar-nav ul, .sidebar-albums ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li a, .sidebar-albums li a {
+    display: block;
+    padding: 12px 30px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-left: 3px solid transparent; /* Untuk indikator aktif */
+}
+
+.sidebar-nav li a:hover, .sidebar-albums li a:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.sidebar-nav li a.active {
+    background-color: #555;
+    color: #FF5E7F; /* Warna highlight pink */
+    border-left-color: #FF5E7F;
+}
+
+.album-heading {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-size: 0.8em;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Konten Galeri Utama */
+.gallery-content {
+    flex: 1; /* Ambil sisa lebar */
+    padding: 30px;
+    overflow-y: auto; /* Aktifkan scroll untuk konten galeri */
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    color: #333; /* Warna teks gelap di sini */
+}
+
+.gallery-category {
+    margin-bottom: 40px;
+}
+
+.category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Grid responsif */
+    gap: 15px; /* Jarak antar gambar */
+}
+
+.gallery-item {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease; /* Zoom in on hover */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* --- Responsive Media Queries (Gallery Page) --- */
+
+@media (max-width: 992px) {
+    .gallery-wrapper {
+        flex-direction: column; /* Tumpuk sidebar dan konten galeri */
+        height: auto; /* Biarkan tinggi menyesuaikan konten */
+        max-width: 90%;
+    }
+    .gallery-sidebar {
+        flex: none;
+        width: 100%; /* Sidebar mengambil lebar penuh */
+        padding: 20px;
+        border-radius: 15px 15px 0 0;
+    }
+    .sidebar-nav ul, .sidebar-albums ul {
+        display: flex; /* Tautan di sidebar menjadi horizontal */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    .sidebar-nav li a, .sidebar-albums li a {
+        padding: 8px 15px;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+    }
+    .sidebar-nav li a.active, .sidebar-albums li a.active {
+        border-left-color: transparent;
+        border-bottom-color: #FF5E7F;
+    }
+    .album-heading {
+        text-align: center;
+        padding: 10px 0;
+    }
+    .gallery-content {
+        padding: 25px;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Lebih kecil di tablet */
+    }
+    .category-title {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-section.gallery-section {
+        padding: 30px 15px;
+    }
+    .gallery-wrapper {
+        max-width: 95%;
+    }
+    .gallery-sidebar {
+        padding: 15px;
+    }
+    .sidebar-avatar {
+        width: 70px;
+        height: 70px;
+    }
+    .sidebar-name {
+        font-size: 1em;
+    }
+    .sidebar-role {
+        font-size: 0.75em;
+    }
+    .sidebar-nav ul, .sidebar-albums ul {
+        gap: 8px;
+    }
+    .sidebar-nav li a, .sidebar-albums li a {
+        font-size: 0.9em;
+        padding: 7px 12px;
+    }
+    .gallery-content {
+        padding: 20px;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Lebih kecil lagi */
+        gap: 10px;
+    }
+    .category-title {
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+    .gallery-item {
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section.gallery-section {
+        padding: 20px 10px;
+    }
+    .gallery-wrapper {
+        max-width: 100%;
+        border-radius: 0; /* Hapus border-radius di mobile penuh */
+    }
+    .gallery-sidebar {
+        padding: 10px;
+        border-radius: 0;
+    }
+    .sidebar-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    .sidebar-name {
+        font-size: 0.9em;
+    }
+    .sidebar-role {
+        font-size: 0.7em;
+    }
+    .sidebar-nav ul, .sidebar-albums ul {
+        flex-direction: column; /* Tumpuk navigasi di sidebar */
+        gap: 5px;
+    }
+    .sidebar-nav li a, .sidebar-albums li a {
+        font-size: 0.85em;
+        padding: 6px 10px;
+        text-align: center;
+        border-bottom: none;
+    }
+    .sidebar-nav li a.active, .sidebar-albums li a.active {
+        border-bottom-color: transparent;
+        border-left: 2px solid #FF5E7F; /* Kembali ke indikator samping */
+    }
+    .gallery-content {
+        padding: 15px;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); /* Sangat kecil untuk mobile */
+        gap: 8px;
+    }
+    .category-title {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+}
