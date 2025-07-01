@@ -1468,6 +1468,229 @@ html, body {
     transform: scale(1.05);
 }
 
+/* --- Styles for Gallery Page (galeri.html) --- */
+.background-image.gallery-bg {
+    filter: brightness(0.2); /* Lebih gelap lagi untuk kontras sidebar yang lebih baik */
+}
+
+.content-section.gallery-section {
+    flex-grow: 1;
+    overflow: hidden; /* Konten utama akan scroll secara internal */
+    padding: 0; /* Hapus padding section agar wrapper bisa edge-to-edge */
+    width: 100%;
+    max-width: none; /* Biarkan section mengambil lebar penuh */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-wrapper {
+    display: flex;
+    flex-direction: row; /* Sidebar di kiri, konten di kanan */
+    width: 100%;
+    max-width: 1200px; /* Lebar maksimal wrapper galeri */
+    /* Menyesuaikan tinggi agar pas di viewport tanpa scroll utama */
+    height: calc(100vh - 120px); /* Contoh: 100vh - (tinggi header internal + tinggi footer) */
+    background-color: #f7f7f7; /* Latar belakang hampir putih untuk konten utama */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden; /* Konten di dalamnya akan di-scroll secara internal jika diperlukan */
+    
+    opacity: 0; /* Untuk animasi masuk */
+    transform: translateY(30px); /* Untuk animasi masuk */
+    animation: fadeInSlideUp 1s ease-out forwards; /* Animasi masuk default */
+}
+
+/* Sidebar Navigasi */
+.gallery-sidebar {
+    flex: 0 0 280px; /* Lebar tetap sidebar, sedikit lebih lebar */
+    background-color: #2e3034; /* Warna gelap sidebar yang lebih akurat dari gambar */
+    color: #f0f0f0;
+    padding: 30px 0; /* Padding vertikal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto; /* Aktifkan scroll untuk sidebar jika kontennya panjang */
+    -webkit-overflow-scrolling: touch;
+    border-right: 1px solid rgba(0,0,0,0.1); /* Border pemisah halus */
+
+    /* Scrollbar kustom untuk WebKit (Chrome, Safari) */
+    &::-webkit-scrollbar {
+        width: 8px; /* Lebar scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+        background: #3a3c40; /* Warna track scrollbar */
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #6a6e75; /* Warna thumb scrollbar */
+        border-radius: 4px;
+        border: 2px solid #3a3c40; /* Padding sekitar thumb */
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #888c94;
+    }
+}
+
+.sidebar-profile {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+    width: 100%; /* Agar bisa center content */
+    box-sizing: border-box;
+}
+
+.sidebar-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff; /* Border putih yang lebih menonjol */
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); /* Bayangan pada avatar */
+}
+
+.sidebar-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.sidebar-role {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 0.85em; /* Sedikit lebih besar */
+    color: #b0b0b0; /* Warna abu-abu terang */
+}
+
+.sidebar-nav, .sidebar-albums {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.sidebar-nav ul, .sidebar-albums ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li a, .sidebar-albums li a {
+    display: block;
+    padding: 12px 30px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #e0e0e0; /* Warna teks tautan */
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-left-color 0.3s ease;
+    border-left: 3px solid transparent; /* Untuk indikator aktif */
+}
+
+.sidebar-nav li a:hover, .sidebar-albums li a:hover {
+    background-color: #3b3d42; /* Latar belakang hover lebih terang */
+    color: #fff;
+}
+
+.sidebar-nav li a.active {
+    background-color: #4b4e54; /* Latar belakang aktif */
+    color: #ff5e7f; /* Warna highlight pink yang lebih cerah */
+    border-left-color: #ff5e7f;
+}
+
+.album-heading {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+    font-size: 0.85em; /* Sedikit lebih besar */
+    color: #808080; /* Warna abu-abu lebih gelap */
+    text-transform: uppercase;
+    letter-spacing: 0.12em; /* Lebih renggang */
+    padding: 10px 30px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Konten Galeri Utama */
+.gallery-content {
+    flex: 1; /* Ambil sisa lebar */
+    padding: 30px;
+    overflow-y: auto; /* Aktifkan scroll untuk konten galeri */
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    color: #333; /* Warna teks gelap di sini */
+
+    /* Scrollbar kustom untuk WebKit (Chrome, Safari) */
+    &::-webkit-scrollbar {
+        width: 8px; /* Lebar scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+        background: #f0f0f0; /* Warna track scrollbar */
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #c0c0c0; /* Warna thumb scrollbar */
+        border-radius: 4px;
+        border: 2px solid #f0f0f0; /* Padding sekitar thumb */
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #a0a0a0;
+    }
+}
+
+.gallery-category {
+    margin-bottom: 40px;
+}
+
+.category-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Grid responsif, sedikit lebih kecil */
+    gap: 15px; /* Jarak antar gambar */
+}
+
+.gallery-item {
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #fff; /* Pastikan latar belakang item putih */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Bayangan lebih halus */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    aspect-ratio: 1 / 1; /* Pastikan gambar kotak */
+    display: flex; /* Untuk centering jika gambar tidak pas */
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-item:hover {
+    transform: translateY(-3px) scale(1.02); /* Sedikit naik dan membesar */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Bayangan lebih kuat */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease; /* Zoom in on hover */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08); /* Zoom in lebih besar */
+}
+
 /* --- Responsive Media Queries (Gallery Page) --- */
 
 @media (max-width: 992px) {
@@ -1481,6 +1704,8 @@ html, body {
         width: 100%; /* Sidebar mengambil lebar penuh */
         padding: 20px;
         border-radius: 15px 15px 0 0;
+        border-right: none; /* Hapus border samping */
+        border-bottom: 1px solid rgba(0,0,0,0.1); /* Tambah border bawah */
     }
     .sidebar-nav ul, .sidebar-albums ul {
         display: flex; /* Tautan di sidebar menjadi horizontal */
@@ -1490,22 +1715,28 @@ html, body {
     }
     .sidebar-nav li a, .sidebar-albums li a {
         padding: 8px 15px;
-        border-left: none;
-        border-bottom: 2px solid transparent;
+        border-left: none; /* Hapus border kiri */
+        border-bottom: 2px solid transparent; /* Untuk indikator aktif di bawah */
+    }
+    .sidebar-nav li a:hover, .sidebar-albums li a:hover {
+        background-color: #3b3d42;
+        color: #fff;
     }
     .sidebar-nav li a.active, .sidebar-albums li a.active {
-        border-left-color: transparent;
-        border-bottom-color: #FF5E7F;
+        border-left-color: transparent; /* Hapus border kiri */
+        border-bottom-color: #ff5e7f; /* Indikator aktif di bawah */
     }
     .album-heading {
         text-align: center;
         padding: 10px 0;
+        border-bottom: none; /* Hapus border bawah jika sudah ada di media query sebelumnya */
     }
     .gallery-content {
         padding: 25px;
     }
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Lebih kecil di tablet */
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Lebih kecil di tablet */
+        gap: 10px;
     }
     .category-title {
         font-size: 1.6em;
@@ -1543,8 +1774,8 @@ html, body {
         padding: 20px;
     }
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Lebih kecil lagi */
-        gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); /* Lebih kecil lagi */
+        gap: 8px;
     }
     .category-title {
         font-size: 1.4em;
@@ -1586,17 +1817,18 @@ html, body {
         padding: 6px 10px;
         text-align: center;
         border-bottom: none;
+        border-left: 2px solid transparent; /* Tetap ada untuk hover/active */
     }
     .sidebar-nav li a.active, .sidebar-albums li a.active {
         border-bottom-color: transparent;
-        border-left: 2px solid #FF5E7F; /* Kembali ke indikator samping */
+        border-left: 2px solid #ff5e7f; /* Kembali ke indikator samping untuk aktif */
     }
     .gallery-content {
         padding: 15px;
     }
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); /* Sangat kecil untuk mobile */
-        gap: 8px;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Sangat kecil untuk mobile */
+        gap: 5px;
     }
     .category-title {
         font-size: 1.2em;
