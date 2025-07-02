@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSIEME | KOPI</title> <link rel="stylesheet" href="style.css">
+    <title>INSIEME | Gallery</title>
+    
+    <link rel="stylesheet" href="style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +17,7 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="background-image"></div>
+        <div class="background-image gallery-bg"></div>
 
         <header class="header-content header-internal">
             <div class="logo">
@@ -23,80 +25,84 @@
                     <img src="images/insieme-logo.png" alt="Insieme Logo"> 
                 </a>
             </div>
-            <h1 class="page-title fade-in-delay">TENTANG KOPI</h1> </header>
+            <h1 class="page-title fade-in-delay">GALERI INSIEME</h1>
+        </header>
 
-        <main class="content-section words-section"> <div class="word-card fade-in-slide-up">
-                <div class="card-header">
-                    <div class="profile-info">
-                        <span class="social-name">Hikmah Kopi 1</span> <span class="social-handle">@fatwaimamkopi</span> </div>
-                    <div class="color-dots">
-                        <span class="dot" style="background-color: #6C7987;"></span>
-                        <span class="dot" style="background-color: #A9B0B7;"></span>
-                        <span class="dot" style="background-color: #CFC5BE;"></span>
-                        <span class="dot" style="background-color: #D38E6A;"></span>
+        <main class="content-section gallery-section">
+            <div class="gallery-wrapper fade-in-slide-up">
+                <aside class="gallery-sidebar">
+                    <div class="sidebar-profile">
+                        <img src="images/profile-akang-avatar-small.png" alt="Admin Avatar" class="sidebar-avatar">
+                        <p class="sidebar-name">INSIEME</p>
+                        <p class="sidebar-role">Pengelola Galeri</p>
                     </div>
-                </div>
-                <p class="quote-arabic">
-                    ثم اعلم ايها القلب المكروب أن هذه القهوه قد جعلها اهل الصفاء مجلبة للأسرار مذهبة للأكدار وقد اختلف في حلها اولا وحاصل ما رجحه ابن حجر في شرح العباب بعد ان ذكر أنها حدثت في اول قرن العاشر . ان للوسائل حكم المقاصد ،فمهما طبخت للخير كانت منه وبالعكس فافهم الأصل
-                </p>
-                <p class="quote">
-                    "Lalu ketahuilah duhai hati yang gelisah bahwa kopi ini telah dijadikan oleh Ahli shofwah (orang orang yang bersih hatinya) sebagai pengundang akan datangnya cahaya dan rahasia Tuhan, penghapus kesusahan. Para ulama berbeda pendapat akan kehalalannya, namun alhasil yang diunggulkan oleh Ibnu Hajar dalam kitab Syarhul Ubab setelah penjelasan bahwa asal usul kopi di awal abad kesepuluh hijriyah memandang dari Qoidah 'bagi perantara menjadi hukum tujuannya' maka selama kopi ini dimasak untuk kebaikan maka mendapat kebaikannya begitu juga sebaliknya, maka fahami asalnya."
-                </p>
-                <div class="hashtags">
-                    <span class="hashtag">#hikmahKopi</span>
-                    <span class="hashtag">#ibnuHajar</span>
-                    <span class="hashtag">#fatwaKopi</span>
-                </div>
-            </div>
+                    <nav class="sidebar-nav">
+                        <ul>
+                            <li><a href="#acara2025" class="active">Ngopi</a></li>
+                            <li><a href="#kegiatanrutin">Ngaji</a></li>
+                            <li><a href="#lainlain">Lain-lain</a></li>
+                            </ul>
+                    </nav>
+                    <div class="sidebar-albums">
+                        <p class="album-heading">ALBUM</p>
+                        <ul>
+                            <li><a href="#subalbum1">Sub-album 1</a></li>
+                            <li><a href="#subalbum2">Sub-album 2</a></li>
+                            <li><a href="#subalbum3">Sub-album 3</a></li>
+                            </ul>
+                    </div>
+                </aside>
 
-            <div class="word-card fade-in-slide-up" style="animation-delay: 0.3s;">
-                <div class="card-header">
-                    <div class="profile-info">
-                        <span class="social-name">Imam Subki</span> <span class="social-handle">@manfaatKopi</span> </div>
-                    <div class="color-dots">
-                        <span class="dot" style="background-color: #6C7987;"></span>
-                        <span class="dot" style="background-color: #A9B0B7;"></span>
-                        <span class="dot" style="background-color: #CFC5BE;"></span>
-                        <span class="dot" style="background-color: #D38E6A;"></span>
+                <section class="gallery-content">
+                    <div class="gallery-category" id="acara2025">
+                        <h2 class="category-title">Ngopi</h2>
+                        <div class="gallery-grid">
+                            <a href="images/full-01.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-01.jpeg" alt="Gambar Galeri 1">
+                            </a>
+                            <a href="images/full-02.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-02.jpeg" alt="Gambar Galeri 2">
+                            </a>
+                            <a href="images/full-03.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-03.jpeg" alt="Gambar Galeri 3">
+                            </a>
+                            <a href="images/full-04.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-04.jpeg" alt="Gambar Galeri 4">
+                            </a>
+                            <a href="images/full-05.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-05.jpeg" alt="Gambar Galeri 5">
+                            </a>
+                            <a href="images/full-06.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-06.jpeg" alt="Gambar Galeri 6">
+                            </a>
+                            <a href="images/full-07.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-07.jpeg" alt="Gambar Galeri 7">
+                            </a>
+                            <a href="images/full-08.jpg" class="gallery-item" data-lightbox="acara2025">
+                                <img src="images/gallery-thumb-08.jpeg" alt="Gambar Galeri 8">
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <p class="quote-arabic">
-                    قال احمد بن علي السبكى  ; واما منافعها يعني القهوه تقريبا ... فالنشاط للعبادة  والأشغال المهمة وهضم الطعام وتحليل الرياح والقولنج والبلغم كثيرا
-                </p>
-                <p class="quote">
-                    "Kopi manfaatnya yaitu kira-kira untuk membuat semangat ibadah dan pekerjaan penting juga menghancurkan makanan, agar tidak masuk angin dan menghilangkan dahak yang banyak."
-                </p>
-                <div class="hashtags">
-                    <span class="hashtag">#kopiSehat</span>
-                    <span class="hashtag">#semangatIbadah</span>
-                    <span class="hashtag">#faedahKopi</span>
-                </div>
-            </div>
 
-            <div class="word-card fade-in-slide-up" style="animation-delay: 0.6s;">
-                <div class="card-header">
-                    <div class="profile-info">
-                        <span class="social-name">Penyair Kopi</span> <span class="social-handle">@kopiHikmah</span> </div>
-                    <div class="color-dots">
-                        <span class="dot" style="background-color: #6C7987;"></span>
-                        <span class="dot" style="background-color: #A9B0B7;"></span>
-                        <span class="dot" style="background-color: #CFC5BE;"></span>
-                        <span class="dot" style="background-color: #D38E6A;"></span>
+                    <div class="gallery-category" id="kegiatanrutin">
+                        <h2 class="category-title">Rutinan Gabut</h2>
+                        <div class="gallery-grid">
+                            <a href="images/full-09.jpg" class="gallery-item" data-lightbox="kegiatanrutin">
+                                <img src="images/gallery-thumb-09.jpg" alt="Gambar Galeri 9">
+                            </a>
+                            <a href="images/full-10.jpg" class="gallery-item" data-lightbox="kegiatanrutin">
+                                <img src="images/gallery-thumb-10.jpg" alt="Gambar Galeri 10">
+                            </a>
+                            </div>
                     </div>
-                </div>
-                <p class="quote-arabic">
-                    يا قهوة تذهب هم الفتى # انت لحاوى العلم نعم المراد شراب اهل الله فيه  الشفا # لطالب الحكمة بين العباد حرمها الله على جاهل # يقول بحرمتها بالعناد
-                </p>
-                <p class="quote">
-                    "Kopi adalah penghilang kesusahan pemuda, senikmat-nikmatnya keinginan bagi engkau yang sedang mencari ilmu. Kopi adalah minuman orang yang dekat pada Allah didalamnya ada kesembuhan bagi pencari hikmah diantara manusia. Kopi diharamkan bagi orang bodoh dan mengatakan keharamannyadengan keras kepala."
-                </p>
-                <div class="hashtags">
-                    <span class="hashtag">#kopiPuisi</span>
-                    <span class="hashtag">#ilmuHikmah</span>
-                    <span class="hashtag">#penghilangGelisah</span>
-                </div>
+
+                    <div class="gallery-category" id="lainlain">
+                        <h2 class="category-title">Lain-lain</h2>
+                        <div class="gallery-grid">
+                            </div>
+                    </div>
+                </section>
             </div>
-            
         </main>
 
         <footer class="footer-social fade-in-delay-more">
@@ -106,5 +112,21 @@
             </div>
         </footer>
     </div>
+    
+    <script>
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Simple placeholder for lightbox functionality
+                // In a real project, you'd integrate a more robust lightbox library here (e.g., SimpleLightbox, Lightgallery)
+                const imageUrl = this.href;
+                const lightboxDiv = document.createElement('div');
+                lightboxDiv.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; cursor: pointer;';
+                lightboxDiv.innerHTML = `<img src="${imageUrl}" style="max-width: 90%; max-height: 90%; object-fit: contain; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5);">`;
+                lightboxDiv.addEventListener('click', () => lightboxDiv.remove()); // Click anywhere to close
+                document.body.appendChild(lightboxDiv);
+            });
+        });
+    </script>
 </body>
 </html>
